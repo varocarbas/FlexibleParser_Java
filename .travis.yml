@@ -1,2 +1,2 @@
 language: java
-before_script: cd project all_code/UnitParser
+before_script: cd all_code/UnitParser
