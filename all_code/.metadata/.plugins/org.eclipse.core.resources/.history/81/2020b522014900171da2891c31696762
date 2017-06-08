@@ -1,0 +1,12 @@
+package test0;
+
+import UnitParser.*;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		UnitP test = new UnitP("9999.99999E1000");
+    	System.out.println(test.Unit);
+	}	
+}

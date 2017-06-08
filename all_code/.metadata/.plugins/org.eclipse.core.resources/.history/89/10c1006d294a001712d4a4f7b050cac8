@@ -1,0 +1,13 @@
+package test0;
+
+import UnitParser.UnitP;
+import UnitParser.UnitSymbols;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		UnitP test = new UnitP(1.0, UnitSymbols.Rod + "/h2");
+		System.out.println(test.Error.Type);
+	}	
+}

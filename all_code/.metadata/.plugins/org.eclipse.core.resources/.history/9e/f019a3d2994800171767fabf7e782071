@@ -1,0 +1,12 @@
+package test0;
+
+import UnitParser.*;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		UnitP test = new UnitP("1 m/s");
+    	System.out.println(test.Unit);
+	}	
+}

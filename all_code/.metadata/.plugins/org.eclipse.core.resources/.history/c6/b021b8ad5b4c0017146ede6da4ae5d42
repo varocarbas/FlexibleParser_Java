@@ -1,0 +1,12 @@
+package test0;
+
+import UnitParser.UnitP;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{	
+		UnitP test = new UnitP(1.0, "surin3/in");
+		System.out.println(test.ValueAndUnitString);
+	}	
+}

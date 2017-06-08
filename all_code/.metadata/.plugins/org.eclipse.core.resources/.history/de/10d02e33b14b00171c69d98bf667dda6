@@ -1,0 +1,19 @@
+package test0;
+
+import UnitParser.PrefixUsageTypes;
+import UnitParser.UnitP;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{	
+		UnitP test0 = new UnitP(9999999999999999.0, "YAU2", PrefixUsageTypes.AllUnits);
+		System.out.println(test0.ValueAndUnitString);
+		UnitP test = UnitP.Division
+		(
+			new UnitP(9999999999999999.0, "YAU2", PrefixUsageTypes.AllUnits),
+			new UnitP("0.000000000000001 yf", PrefixUsageTypes.AllUnits)
+		);
+		System.out.println(test.ValueAndUnitString);
+	}	
+}

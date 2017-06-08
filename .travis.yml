@@ -1,0 +1,2 @@
+language: java
+before_script: cd project all_code/UnitParser

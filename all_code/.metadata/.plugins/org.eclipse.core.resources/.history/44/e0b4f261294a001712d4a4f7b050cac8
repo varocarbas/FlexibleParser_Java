@@ -1,0 +1,15 @@
+package test0;
+
+import UnitParser.UnitP;
+import UnitParser.Units;
+import UnitParser.UnitP.ErrorInfo;
+import UnitParser.UnitP.ErrorTypes;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		UnitP test = new UnitP("1234E1.5");
+		System.out.println(test.Error.Type);
+	}	
+}

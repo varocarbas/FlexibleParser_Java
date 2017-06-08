@@ -1,0 +1,10 @@
+package UnitParser;
+
+public class TestTemp
+{
+	public static void main(String[] args)
+	{
+		UnitP test = new UnitP("asfasf");
+		test = test;
+	}
+}

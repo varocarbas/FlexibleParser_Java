@@ -1,0 +1,12 @@
+package test0;
+
+import UnitParser.UnitP;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{	
+		UnitP test = new UnitP("J÷s-2");
+		System.out.println(test.ValueAndUnitString);
+	}	
+}

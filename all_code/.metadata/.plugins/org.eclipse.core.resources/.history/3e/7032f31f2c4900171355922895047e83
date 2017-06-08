@@ -1,0 +1,16 @@
+package test0;
+
+import UnitParser.UnitP;
+import UnitParser.Units;
+import UnitParser.UnitP.ErrorInfo;
+import UnitParser.UnitP.ErrorTypes;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		UnitP test = UnitP.Multiplication(new UnitP(1.0, Units.Metre), new UnitP("1 ft"));
+		
+		System.out.println(test.Error.Message);
+	}	
+}

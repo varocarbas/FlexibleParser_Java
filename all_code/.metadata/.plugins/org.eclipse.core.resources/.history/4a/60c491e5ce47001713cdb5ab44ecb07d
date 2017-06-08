@@ -1,0 +1,8 @@
+import Parts.*;
+
+public class Main
+{
+	//UnitParser tests.
+	Parts.UnitParser2.Test = "";
+    UnitParser.StartTest();
+}

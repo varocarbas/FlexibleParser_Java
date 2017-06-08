@@ -1,0 +1,12 @@
+package test0;
+
+import UnitParser.UnitP.ErrorInfo;
+import UnitParser.UnitP.ErrorTypes;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+
+	}	
+}

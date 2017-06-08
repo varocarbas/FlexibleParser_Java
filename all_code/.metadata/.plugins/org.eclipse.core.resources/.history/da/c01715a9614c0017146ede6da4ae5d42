@@ -1,0 +1,29 @@
+package test0;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import UnitParser.*;
+
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{	
+		ArrayList<Prefix> tests = new ArrayList<Prefix>();
+		tests.add(new Prefix(2555.0));
+		tests.add(new Prefix(1000.0));
+		tests.add(new Prefix(500000));
+		
+		if(tests.get(0).equals(tests.get(2)))
+		{
+			System.out.println("Is OK");
+		}
+		
+		Collections.sort(tests);
+		
+		for (Prefix item: tests)
+		{
+			System.out.println(item.Factor);
+		}		
+	}	
+}
