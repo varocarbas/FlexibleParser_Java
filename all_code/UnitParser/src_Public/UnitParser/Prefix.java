@@ -48,7 +48,6 @@ public class Prefix implements Comparable<Prefix>
     /**
     Initialises a new Prefix instance.
     @param factor Multiplying factor to be used.
-    @param prefixUsage Member of the PrefixUsageTypes enum to be used.
     **/
     public Prefix(double factor)
     {
@@ -88,7 +87,6 @@ public class Prefix implements Comparable<Prefix>
     /**
     Initialises a new Prefix instance.
     @param symbol Symbol (case does matter) defining the current prefix.
-    @param prefixUsage Member of the PrefixUsageTypes enum to be used.
     **/
     public Prefix(String symbol)
     {

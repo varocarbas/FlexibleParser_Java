@@ -20,7 +20,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="ImproveFinalValue" key="textPattern"/>
+			<item value="NoNullEquals" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -32,7 +32,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="&apos;.&apos;" key="textPattern"/>
+			<item value="ImproveFinalValue" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -44,7 +44,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="System.out" key="textPattern"/>
+			<item value="@SuppressWarnings" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -56,7 +56,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="UnitInfo RemoveUnitPartPrefixes" key="textPattern"/>
+			<item value="CorrectDifferentSystemIssues" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -68,7 +68,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="NoNullEquals" key="textPattern"/>
+			<item value="System.out" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -83,7 +83,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="UnitInfo CorrectDifferentSystemIssues" key="textPattern"/>
+			<item value="UnitInfo RemoveUnitPartPrefixes" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -95,7 +95,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="UnitInfo AdaptUnitParts" key="textPattern"/>
+			<item value="&apos;.&apos;" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -107,7 +107,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="CorrectDifferentSystemIssues" key="textPattern"/>
+			<item value="UnitInfo AdaptUnitParts" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -119,7 +119,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="&lt;summary" key="textPattern"/>
+			<item value="summary" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -131,7 +131,7 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="@SuppressWarnings" key="textPattern"/>
+			<item value="&lt;summary" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -141,9 +141,9 @@
 		</section>
 		<section name="HISTORY0">
 			<item value="true" key="ignoreCase"/>
-			<item value="0" key="scope"/>
+			<item value="1" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="/&gt;" key="textPattern"/>
+			<item value="@param unitP unitP" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -153,9 +153,9 @@
 		</section>
 		<section name="HISTORY1">
 			<item value="true" key="ignoreCase"/>
-			<item value="1" key="scope"/>
+			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="summary" key="textPattern"/>
+			<item value="/&gt;" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>
@@ -179,6 +179,11 @@
 			<item value="org.eclipse.mylyn.tasks.ui.search.page"/>
 			<item value="org.eclipse.egit.ui.commitSearchPage"/>
 			<item value="org.eclipse.jdt.ui.JavaSearchPage"/>
+		</list>
+	</section>
+	<section name="ReplaceDialog2">
+		<list key="replace_with">
+			<item value="@param unitP"/>
 		</list>
 	</section>
 	<section name="SearchDialog">

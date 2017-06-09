@@ -152,7 +152,7 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Initialises a new UnitP instance.
-    @param unitP unitP variable whose information will be used.
+    @param unitP variable whose information will be used.
     **/
     public UnitP(UnitP unitP) 
     {
@@ -585,8 +585,9 @@ public class UnitP implements Comparable<UnitP>
     /**
     Converts the input unit into the target one. Different unit types will trigger an error.
     targetPrefix = null
-    @param unitP unitP variable whose unit will be converted.
+    @param unitP variable whose unit will be converted.
     @param targetUnit Conversion target unit.
+    @return UnitP variable containing the information resulting from converting unitP to targetUnit.
     **/
     public static UnitP ConvertTo(UnitP unitP, Units targetUnit)
     {
@@ -595,9 +596,10 @@ public class UnitP implements Comparable<UnitP>
     
     /**
     Converts the input unit into the target one. Different unit types will trigger an error.
-    @param unitP unitP variable whose unit will be converted.
+    @param unitP variable whose unit will be converted.
     @param targetUnit Conversion target unit.
     @param targetPrefix Prefix of the conversion target unit.
+    @return UnitP variable containing the information resulting from converting unitP to targetUnit and targetPrefix.   
     **/
     public static UnitP ConvertTo(UnitP unitP, Units targetUnit, Prefix targetPrefix)
     {
@@ -606,8 +608,9 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Converts the input unit into the target one. Different unit types will trigger an error.
-    @param unitP unitP variable whose unit will be converted.
+    @param unitP variable whose unit will be converted.
     @param targetUnitString String representation of the conversion target unit.
+    @return UnitP variable containing the information resulting from converting unitP to targetUnitString.   
     **/
     public static UnitP ConvertTo(UnitP unitP, String targetUnitString)
     {
@@ -617,7 +620,8 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the input unit.
     otherStringsToo = false
-    @param unit Unit whose String representations will be returned.    
+    @param unit Unit whose String representations will be returned.  
+    @return ArrayList including all the primary string representations associated with unit.         
     **/
     public static final ArrayList<String> GetStringsForUnit(Units unit)
     {
@@ -628,6 +632,7 @@ public class UnitP implements Comparable<UnitP>
     Returns the String representations associated with the input unit.
     @param unit Unit whose String representations will be returned.  
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included.  
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with unit.     
     **/
     public static final ArrayList<String> GetStringsForUnit(Units unit, boolean otherStringsToo)
     {
@@ -637,7 +642,8 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the input unit type.
     otherStringsToo = false
-    @param unitType Type of the unit String representations to be returned.    
+    @param unitType Type of the unit String representations to be returned. 
+    @return ArrayList including all the primary string representations associated with all the units related to unitType.    
     **/
     public static final ArrayList<String> GetStringsForType(UnitTypes unitType)
     {
@@ -648,6 +654,7 @@ public class UnitP implements Comparable<UnitP>
     Returns the String representations associated with the input unit type.
     @param unitType Type of the unit String representations to be returned.  
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included.  
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with all the units related to unitType. 
     **/
     public static final ArrayList<String> GetStringsForType(UnitTypes unitType, boolean otherStringsToo)
     {
@@ -658,7 +665,8 @@ public class UnitP implements Comparable<UnitP>
     Returns the String representations associated with the input unit type and system.
     otherStringsToo = false
     @param unitType Type of the unit String representations to be returned.  
-    @param unitSystem System of the unit String representations to be returned.          
+    @param unitSystem System of the unit String representations to be returned. 
+    @return ArrayList including all the primary string representations associated with all the units related to unitType and unitSystem.          
     **/ 
     public static final ArrayList<String> GetStringsForTypeAndSystem(UnitTypes unitType, UnitSystems unitSystem)
     {
@@ -670,6 +678,7 @@ public class UnitP implements Comparable<UnitP>
     @param unitType Type of the unit String representations to be returned.  
     @param unitSystem System of the unit String representations to be returned.          
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included. 
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with all the units related to unitType and unitSystem. 
     **/ 
     public static final ArrayList<String> GetStringsForTypeAndSystem(UnitTypes unitType, UnitSystems unitSystem, boolean otherStringsToo)
     {
@@ -678,7 +687,8 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the members of the Units enum which are associated with the input unit type.
-    @param unitType Type of the units to be returned.  
+    @param unitType Type of the units to be returned.
+    @return ArrayList including all the units associated with unitType.       
     **/
     public static final ArrayList<Units> GetUnitsForType(UnitTypes unitType)
     {
@@ -689,6 +699,7 @@ public class UnitP implements Comparable<UnitP>
     Returns the members of the Units enum which are associated with the input unit type and system.
     @param unitType Type of the units to be returned.  
     @param unitSystem System of the units to be returned.  
+    @return ArrayList variable including all the units associated with unitType and unitSystem.    
     **/
     public static final ArrayList<Units> GetUnitsForTypeAndSystem(UnitTypes unitType, UnitSystems unitSystem)
     {
@@ -698,6 +709,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the member of the UnitTypes enum which is associated with the input unit.
     @param unit Unit whose type will be returned.  
+    @return UnitTypes variable associated with unit.    
     **/
     public static UnitTypes GetUnitType(Units unit)
     {
@@ -706,7 +718,8 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the member of the UnitSystems enum which is associated with the input unit.
-    @param unit Unit whose system will be returned.  
+    @param unit Unit whose system will be returned. 
+    @return UnitSystems variable associated with unit.  
     **/
     public static UnitSystems GetUnitSystem(Units unit)
     {
@@ -715,7 +728,8 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Removes the global prefix of the input UnitP variable.
-    @param unitP UnitP variable whose prefix will be removed.  
+    @param unitP variable whose prefix will be removed. 
+    @return UnitP variable containing all the unitP information without relying on the global prefix (i.e., UnitP.UnitPrefix.Factor = 1.0).   
     **/
     public static UnitP RemoveGlobalPrefix(UnitP unitP)
     {
@@ -731,7 +745,8 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Transfers all the base-ten exponent information to the Value field (if possible).  
-    @param unitP UnitP variable whose base-ten exponent will be removed. 
+    @param unitP variable whose base-ten exponent will be removed. 
+    @return UnitP variable containing all the unitP information by reducing the global base-ten exponent (i.e., UnitP.BaseTenExponent = 0) value as much as possible.      
     **/ 
     public static UnitP RemoveBaseTen(UnitP unitP)
     {
@@ -750,6 +765,7 @@ public class UnitP implements Comparable<UnitP>
     Converts the current unit into the target one. Different unit types will trigger an error.
     targetPrefix = null
     @param targetUnit Conversion target unit.
+    @return Current instance converted to targetUnit.    
     **/
     public UnitP ConvertCurrentUnitTo(Units targetUnit)
     {
@@ -760,6 +776,7 @@ public class UnitP implements Comparable<UnitP>
     Converts the current unit into the target one. Different unit types will trigger an error.
     @param targetUnit Conversion target unit.
     @param targetPrefix Prefix of the conversion target unit.
+    @return Current instance converted to targetUnit and targetPrefix.  
     **/
     public UnitP ConvertCurrentUnitTo(Units targetUnit, Prefix targetPrefix)
     {
@@ -769,6 +786,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Converts the current unit into the target one. Different unit types will trigger an error.
     @param targetUnitString String representation of the conversion target unit.
+    @return Current instance converted to targetUnitString.  
     **/
     public UnitP ConvertCurrentUnitTo(String targetUnitString)
     {
@@ -778,6 +796,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit.
     otherStringsToo = false
+    @return ArrayList including all the primary string representations associated with the current instance unit.             
     **/
     public final ArrayList<String> GetStringsForCurrentUnit()
     {
@@ -787,6 +806,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit.
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included.  
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with the current instance unit.    
     **/
     public final ArrayList<String> GetStringsForCurrentUnit(boolean otherStringsToo)
     {
@@ -796,6 +816,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit type.
     otherStringsToo = false
+    @return ArrayList including all the primary string representations associated with the current instance type.       
     **/       
     public final ArrayList<String> GetStringsForCurrentType()
     {
@@ -805,6 +826,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit type.
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included. 
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with the current instance type.   
     **/       
     public final ArrayList<String> GetStringsForCurrentType(boolean otherStringsToo)
     {
@@ -814,6 +836,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit type and system.
     otherStringsToo = false
+    @return ArrayList including all the primary string representations associated with the current instance type and system.   
     **/
     public final ArrayList<String> GetStringsForCurrentTypeAndSystem()
     {
@@ -823,6 +846,7 @@ public class UnitP implements Comparable<UnitP>
     /**
     Returns the String representations associated with the current unit type and system.
     @param otherStringsToo When true, all the supported String representations (case doesn't matter) other than symbols (case matters) are also included.  
+    @return ArrayList including all the (primary or primary and secondary) string representations associated with the current instance type and system.   
     **/
     public final ArrayList<String> GetStringsForCurrentTypeAndSystem(boolean otherStringsToo)
     {
@@ -834,6 +858,7 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the members of the Units enum which are associated with the current unit type. 
+    @return ArrayList including all the units associated with the current instance type.   
     **/
     public final ArrayList<Units> GetUnitsForCurrentType()
     {
@@ -842,6 +867,7 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the members of the Units enum which are associated with the current unit type and system.
+    @return ArrayList including all the units associated with the current instance type and system.  
     **/
     public final ArrayList<Units> GetUnitsForCurrentTypeAndSystem()
     {
@@ -850,6 +876,7 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the member of the UnitTypes enum which is associated with the current unit.
+    @return UnitTypes variable associated with the current instance.    
     **/
     public UnitTypes GetCurrentUnitType()
     {
@@ -858,6 +885,7 @@ public class UnitP implements Comparable<UnitP>
 
     /**
     Returns the member of the UnitSystems enum which is associated with the current unit.  
+    @return UnitSystems variable associated with the current instance.      
     **/
     public UnitSystems GetCurrentUnitSystem()
     {
@@ -865,7 +893,8 @@ public class UnitP implements Comparable<UnitP>
     }
 
     /**
-    Removes the global prefix of the current UnitP variable.  
+    Removes the global prefix of the current UnitP variable.
+    @return Removes the global prefix (i.e., UnitP.UnitPrefix.Factor = 1.0) from the current instance.         
     **/
     public UnitP RemoveCurrentGlobalPrefix()
     {
@@ -880,7 +909,8 @@ public class UnitP implements Comparable<UnitP>
     }
 
     /**
-    Transfers all the base-ten exponent information to the Value field (if possible).  
+    Transfers all the base-ten exponent information to the Value field (if possible).
+    @return Reduces the global base-ten exponent (i.e., UnitP.BaseTenExponent = 0) value of the current instance as much as possible.         
     **/
     public UnitP RemoveCurrentBaseTen()
     {
@@ -1051,6 +1081,7 @@ public class UnitP implements Comparable<UnitP>
     Different unit types will trigger an error.
     @param first Augend. In case of incompatibilities, its configuration would prevail.
     @param second Addend.
+    @return UnitP variable resulting from adding first and second.
     **/
     public static UnitP Addition(UnitP first, UnitP second)
     {
@@ -1066,6 +1097,7 @@ public class UnitP implements Comparable<UnitP>
     Different unit types will trigger an error.       
     @param first Minuend. In case of incompatibilities, its configuration would prevail.
     @param second Subtrahend.
+    @return UnitP variable resulting from subtracting first and second.
     **/
     public static UnitP Subtraction(UnitP first, UnitP second)
     {
@@ -1081,6 +1113,7 @@ public class UnitP implements Comparable<UnitP>
     Different unit types will trigger an error.     
     @param first Multiplicand. In case of incompatibilities, its configuration would prevail.
     @param second Multiplier.
+    @return UnitP variable resulting from multiplying first and second.    
     **/
     public static UnitP Multiplication(UnitP first, UnitP second)
     {
@@ -1096,6 +1129,7 @@ public class UnitP implements Comparable<UnitP>
     Eventual errors will be managed as defined in first.ExceptionHandling.        
     @param first Multiplicand.
     @param second Multiplier.
+    @return UnitP variable resulting from multiplying first and second.   
     **/
     public static UnitP Multiplication(UnitP first, double second)
     {
@@ -1111,6 +1145,7 @@ public class UnitP implements Comparable<UnitP>
     Eventual errors will be managed as defined by the double type.
     @param first Multiplicand.
     @param second Multiplier.
+    @return UnitP variable resulting from multiplying first and second.   
     **/
     public static UnitP Multiplication(double first, UnitP second)
     {
@@ -1126,6 +1161,7 @@ public class UnitP implements Comparable<UnitP>
     Different unit types will trigger an error.        
     @param first Dividend. In case of incompatibilities, its configuration would prevail.
     @param second Divisor.
+    @return UnitP variable resulting from dividing first and second.   
     **/
     public static UnitP Division(UnitP first, UnitP second)
     {
@@ -1141,6 +1177,7 @@ public class UnitP implements Comparable<UnitP>
     Eventual errors will be managed as defined in first.ExceptionHandling.      
     @param first Dividend.
     @param second Divisor.
+    @return UnitP variable resulting from dividing first and second.   
     **/
     public static UnitP Division(UnitP first, double second)
     {
@@ -1154,9 +1191,10 @@ public class UnitP implements Comparable<UnitP>
     /**
     Divides a double variable by the value of a UnitP one.
     Eventual errors will be managed as defined by the double type.            
-    @param first Multiplicand.
-    @param second Multiplier.
-     **/
+    @param first Dividend.
+    @param second Divisor.
+    @return UnitP variable resulting from dividing first and second.   
+    **/
     public static UnitP Division(double first, UnitP second)
     {
         return OperationsPublic.PerformUnitOperation

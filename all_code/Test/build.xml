@@ -47,14 +47,4 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Main">
-        <java classname="Main" failonerror="true" fork="yes">
-            <classpath refid="Test.classpath"/>
-        </java>
-    </target>
-    <target name="UnitParser">
-        <java classname="Parts.UnitParser" failonerror="true" fork="yes">
-            <classpath refid="Test.classpath"/>
-        </java>
-    </target>
 </project>

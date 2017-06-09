@@ -67,7 +67,7 @@
 		<item value="true" key="splitindex"/>
 		<item value="true" key="fromStandard"/>
 		<item value="false" key="notree"/>
-		<item value="C:\Users\Alvaro\Desktop\workspace\UnitParser\doc\asdfas.doc" key="destdir"/>
+		<item value="C:\Users\Alvaro\Desktop\workspace\UnitParser\UnitParser.doc" key="destdir"/>
 		<item value="true" key="openinbrowser"/>
 		<section name="projects">
 			<section name="Test">
@@ -77,7 +77,7 @@
 			</section>
 			<section name="UnitParser">
 				<item value="C:\Users\Alvaro\Desktop\workspace\UnitParser\javadoc.xml" key="antpath"/>
-				<item value="C:\Users\Alvaro\Desktop\workspace\UnitParser\doc\asdfas.doc" key="destdir"/>
+				<item value="C:\Users\Alvaro\Desktop\workspace\UnitParser\UnitParser.doc" key="destdir"/>
 				<item value="" key="href"/>
 			</section>
 		</section>
@@ -121,7 +121,7 @@
 		<item value="true" key="jarOptionsWizardPage.EXPORT_WARNINGS"/>
 		<item value="" key="jarOptionsWizardPage.DESCRIPTION_LOCATION"/>
 		<item value="true" key="jarOptionsWizardPage.BUILD_IF_NEEDED"/>
-		<item value="false" key="JarPackageWizardPage.EXPORT_JAVA_FILES"/>
+		<item value="true" key="JarPackageWizardPage.EXPORT_JAVA_FILES"/>
 		<item value="true" key="jarOptionsWizardPage.EXPORT_ERRORS"/>
 		<item value="true" key="JarManifestWizardPage.GENERATE_MANIFEST"/>
 		<item value="true" key="JarPackageWizardPage.EXPORT_CLASS_FILES"/>

@@ -18,7 +18,6 @@ public class UnitPart
     /**Initialises a new UnitPart instance.
     @param unit Member of the Units enum to be used.
     @param prefix Prefix variable whose information will be used.
-    @param exponent Integer exponent to be used.
     **/
     public UnitPart(Units unit, Prefix prefix)
     {
@@ -40,7 +39,6 @@ public class UnitPart
     /**
     Initialises a new UnitPart instance.
     @param unit Member of the Units enum to be used.
-    @param exponent Integer exponent to be used.
     **/
     public UnitPart(Units unit)
     {
