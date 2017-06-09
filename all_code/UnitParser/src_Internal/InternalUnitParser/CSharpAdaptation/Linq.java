@@ -89,16 +89,16 @@ public class Linq
 		if (input == null || comparator == null) return input;
 		
 		return (ArrayList<X>)OrderByDescending
-    	(
-    		(ArrayList<XAndIntegerClass>)GroupByJustCount(input, comparator), new Comparator<XAndIntegerClass>()
+		(
+			(ArrayList<XAndIntegerClass>)GroupByJustCount(input, comparator), new Comparator<XAndIntegerClass>()
 			{
 				public int compare(XAndIntegerClass first, XAndIntegerClass second)
 				{
 					return first.Count.compareTo(second.Count);
 				}        				
 			}
-    	)
-    	.stream().map(x -> x.Input).collect(Collectors.toList());
+		)
+		.stream().map(x -> x.Input).collect(Collectors.toList());
 	}
 	
 	static <X> ArrayList<XAndIntegerClass> GroupByJustCount(ArrayList<X> input, Comparator<X> comparator)
