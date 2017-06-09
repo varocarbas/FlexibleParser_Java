@@ -1,6 +1,9 @@
 language: java
 jdk:
   - oraclejdk8
-script: cd all_code/UnitParser && ant build && ../Test && ant build 
+env:
+  - DIR=all_code/UnitParser
+  - DIR=all_code/Test
+script: cd $DIR && ant build  
 notifications:
-  email: false 
+  email: false
