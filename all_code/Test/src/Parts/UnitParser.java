@@ -1,7 +1,6 @@
 package Parts;
 
-import InternalUnitParser.CSharpAdaptation.CSharpOther;
-import InternalUnitParser.CSharpAdaptation.Linq;
+import InternalUnitParser.CSharpAdaptation.*;
 import UnitParser.*;
 
 import java.util.Scanner;
