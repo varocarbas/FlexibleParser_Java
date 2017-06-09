@@ -1,5 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
-before_script: cd all_code/UnitParser
-script: ant build
+env:
+  - DIR=all_code/UnitParser
+  - DIR=all_code/Test
+script: cd $TEST_DIR && ant build  
