@@ -78,7 +78,7 @@ public class Linq
 			return FirstOrDefaultDict(input, null);
 		}
 		
-		return (Map.Entry<X, Y>)FirstOrDefault
+		return FirstOrDefaultDict
 		(
 			OrderByDescending(new ArrayList(input.entrySet()), comparator), null
 		);	
