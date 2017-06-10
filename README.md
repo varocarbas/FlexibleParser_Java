@@ -2,9 +2,22 @@
 
 [![Build Status](https://travis-ci.org/varocarbas/FlexibleParser_Java.svg?branch=master)](https://travis-ci.org/varocarbas/FlexibleParser_Java)
 
-I will add these contents ASAP. 
+NOTE: this is the conversion to Java of the original C# version stored in the [FlexibleParser repository](https://github.com/varocarbas/FlexibleParser).
 
-For the time being, you can take a look at the original C# code (https://github.com/varocarbas/FlexibleParser), which is almost identical. The easiest way to know about the differences between both versions is by comparing the corresponding test codes: [C#](https://github.com/varocarbas/FlexibleParser/blob/master/all_code/Test/Program.cs) and [Java](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Main.java).
+FlexibleParser is a multi-purpose parsing library based upon the following ideas:
+
+- Intuitive, adaptable and easy to use.
+- Pragmatic, but aiming for the maximum accuracy and correctness.
+- Overall compatible and easily automatable. 
+- Formed by independent DLLs managing specific situations.
+
+## Parts
+
+At the moment, FlexibleParser is formed by the following independent parts:
+
+[UnitParser](https://customsolvers.com/unit_parser_java/), [main code](https://github.com/varocarbas/FlexibleParser_Java/tree/master/all_code/UnitParser), [test code](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java), [readme file](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_readme/UnitParser_Java.md)<br/>
+It allows to easily deal with a wide variety of situations involving units of measurement.
+Among its most salient features are: user-defined exception triggering and gracefully managing numeric values of any size.
 
 
 ## Authorship & Copyright
