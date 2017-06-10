@@ -9,7 +9,7 @@ FlexibleParser is a multi-purpose parsing library based upon the following ideas
 - Intuitive, adaptable and easy to use.
 - Pragmatic, but aiming for the maximum accuracy and correctness.
 - Overall compatible and easily automatable. 
-- Formed by independent DLLs managing specific situations.
+- Formed by independent JARs managing specific situations.
 
 ## Parts
 
