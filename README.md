@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/varocarbas/FlexibleParser_Java.svg?branch=master)](https://travis-ci.org/varocarbas/FlexibleParser_Java)
 
--- NOTE: this is the conversion to Java of the original C# version stored in the [FlexibleParser repository](https://github.com/varocarbas/FlexibleParser). --
+**NOTE:** this is the conversion to Java of the original C# code stored in the [FlexibleParser repository](https://github.com/varocarbas/FlexibleParser). 
 
 FlexibleParser is a multi-purpose parsing library based upon the following ideas:
 
