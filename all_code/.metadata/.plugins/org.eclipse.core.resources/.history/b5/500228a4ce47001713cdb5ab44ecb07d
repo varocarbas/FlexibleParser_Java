@@ -1,8 +1,0 @@
-import Parts.*;
-
-public class Main
-{
-	//UnitParser tests.
-	Parts.UnitParser.main();
-    UnitParser.StartTest();
-}

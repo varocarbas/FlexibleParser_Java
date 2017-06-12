@@ -16,7 +16,7 @@ public class UnitParser
     {
         System.out.println("-------------- UnitParser --------------");
         System.out.println();
-       
+    
         //------ The base class is UnitP. There are multiple ways to instantiate a UnitP variable.
         PrintSampleItem("Inst1", new UnitP("1 N")); //Unit symbol. Case does matter.
         PrintSampleItem("Inst2", new UnitP(1.0, UnitSymbols.Newton));

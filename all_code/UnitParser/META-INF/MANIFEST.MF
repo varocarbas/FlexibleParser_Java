@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: varocarbas
+Implementation-Title: UnitParser
+Implementation-Version: 1.0.9.0
+Implementation-Vendor: Custom Solvers 2.0
+Implementation-URL: https://customsolvers.com/unit_parser_java/
+Specification-Title: UnitParser 
+Specification-Version: 1.0.9.0
+Specification-Vendor: Custom Solvers 2.0

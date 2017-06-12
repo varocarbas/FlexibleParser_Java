@@ -1,9 +1,0 @@
-package UnitParser;
-
-public class TestTemp
-{
-	public static void main(String[] args)
-	{
-		Parts.UnitParser.st
-	}
-}
