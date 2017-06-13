@@ -1,6 +1,8 @@
 # UnitParser (Java) 
 
-[Master source code](https://github.com/varocarbas/FlexibleParser_Java/tree/master/all_code/UnitParser) -- [Test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.807522.svg)](https://zenodo.org/record/807522)
+
+[Last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/UnitParser_1.0.9.0) -- [Test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java) 
 
 [https://customsolvers.com/unit_parser_java/](https://customsolvers.com/unit_parser_java/) (ES: [https://customsolvers.com/unit_parser_java_es/](https://customsolvers.com/unit_parser_java_es/))
 
