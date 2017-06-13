@@ -15,7 +15,7 @@ FlexibleParser is a multi-purpose parsing library based upon the following ideas
 
 At the moment, FlexibleParser is formed by the following independent parts:
 
-[![DOI](https://zenodo.org/badge/93787069.svg)](https://zenodo.org/badge/latestdoi/93787069) [UnitParser](https://customsolvers.com/unit_parser_java/) ([last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/UnitParser_1.0.9.0), [readme file](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_readme/UnitParser_Java.md), [test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java))<br/>
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.807522.svg)](https://zenodo.org/record/807522) [UnitParser](https://customsolvers.com/unit_parser_java/) ([last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/UnitParser_1.0.9.0), [readme file](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_readme/UnitParser_Java.md), [test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java))<br/>
 It allows to easily deal with a wide variety of situations involving units of measurement.
 Among its most salient features are: user-defined exception triggering and gracefully managing numeric values of any size.
 
