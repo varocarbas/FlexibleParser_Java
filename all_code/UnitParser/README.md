@@ -1,5 +1,9 @@
 # UnitParser (Java) 
 
+[Master source code](https://github.com/varocarbas/FlexibleParser_Java/tree/master/all_code/UnitParser) -- [Test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java) 
+
+[https://customsolvers.com/unit_parser_java/](https://customsolvers.com/unit_parser_java/) (ES: [https://customsolvers.com/unit_parser_java_es/](https://customsolvers.com/unit_parser_java_es/))
+
 ## Introduction
 The main class is called ```UnitP``` (```UnitParser``` package). It can be instantiated in many different ways.
 
