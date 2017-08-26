@@ -172,7 +172,14 @@ public class Parse
             }
             else
             {
-            	tempVar = TryParseMethods.Double(stringToParse.substring(0, 299));
+            	tempVar = TryParseMethods.Double
+            	(
+            		CSharpOther.Substring
+            		(
+            			stringToParse, 0, 299
+                    )
+            	);
+
                 if (tempVar.IsOK)
                 {
                     String remString = stringToParse.substring(299);
@@ -196,7 +203,11 @@ public class Parse
                         int length2 = (remString.length() > 299 ? 299 : remString.length());
                         for (int i = 0; i < remString.length(); i++)
                         {
-                            if (remString.substring(i, 1) != "0" && remString.substring(i, 1) != ",")
+                        	String bit = CSharpOther.Substring
+                        	(
+                        		remString, i, 1
+                        	);
+                            if (bit != "0" && bit != ",")
                             {
                                 //The default interpretation is initial_part*10^remString.size() (up to the maximum length natively supported by double). 
                                 //For example, 0.0000012345[...]4565879561424 is correctly understood as 0.0000012345*10^length-after-[...]. In this specific 
@@ -204,7 +215,13 @@ public class Parse
                                 //Thus, startNumber is being redefined as all the digits (up to the maximum length natively supported by double) after the 
                                 //first non-zero one; and beyondCount (i.e., the associated 10-base exponent) such that it also includes all the digits since the start.
                                 found = true;
-                                tempVar.DoubleVal = Double.parseDouble(remString.substring(i, length2 - i));
+                                tempVar.DoubleVal = Double.parseDouble
+                                (
+                                	CSharpOther.Substring
+                                	(
+                                		remString, i, length2 - i
+                                	)
+                                );
                                 beyondCount = 297 + length2;
                                 break;
                             }
@@ -615,7 +632,11 @@ public class Parse
 
             if (sofar.length() >= 2)
             {
-                String sofar2 = sofar.substring(sofar.length() - 2, 2);
+            	String sofar2 = CSharpOther.Substring
+            	(
+            		sofar, sofar.length() - 2, 2
+            	);
+
                 if (sofar2 == "ma" || sofar2 == "lu")
                 {
                     //It isn't a multiplication sign, but part of the String representations
@@ -626,7 +647,11 @@ public class Parse
 
             if (sofar.length() >= 1)
             {
-                String sofar2 = sofar.substring(sofar.length() - 1, 1);
+            	String sofar2 = CSharpOther.Substring
+            	(
+            		sofar, sofar.length() - 1, 1
+            	);
+
                 if (sofar2 == "m" || sofar2 == "l")
                 {
                     if (i == inputArray.size() - 1 || MethodsCommon.IsCompoundDescriptive(inputArray.get(i + 1)))
@@ -1278,7 +1303,11 @@ public class Parse
             //Only integer exponents are supported.
             outVar = new ParseExponent
             (
-                input.substring(0, i2 + 1), tempVar.IntVal
+            	CSharpOther.Substring
+            	(
+            		input, 0, i2 + 1
+                )	
+            	, tempVar.IntVal
             );
         }
 

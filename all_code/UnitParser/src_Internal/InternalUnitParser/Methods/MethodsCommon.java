@@ -108,7 +108,11 @@ public class MethodsCommon
     {
         if (unitString.endsWith("y"))
         {
-            return unitString.substring(0, unitString.length() - 1) + "ies";
+            return CSharpOther.Substring
+            (
+            	unitString, 0, unitString.length() - 1
+            ) 
+            + "ies";
         }
         unitString = unitString.replace("inches", "inch");
         unitString = unitString.replace("inch", "inches");

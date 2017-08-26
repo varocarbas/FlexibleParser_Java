@@ -21,6 +21,15 @@ public class CSharpOther
 		return "";
 	}
 
+	public static String Substring(String input, int startI, int length)
+	{
+		return
+		(
+			length < 0 ? input.substring(startI) :
+			input.substring(startI, startI + length)
+		);
+	}
+	
 	public static String[] SplitTryCatch(String input, String separator)
 	{
 		String[] output = new String[] { input };
