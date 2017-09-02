@@ -10,15 +10,64 @@ import java.util.AbstractMap;
 public class Prefix implements Comparable<Prefix>
 {
     /**Name of the unit prefix.**/
-    public final String Name;
+    private String Name;
+    
+    /**
+    Name getter.
+    @return Current value of the private String variable Name. 
+    **/
+    public String getName()
+	{
+	    return Name;
+	}  
+    
     /**Symbol of the unit prefix.**/
-    public final String Symbol;
+    private String Symbol;
+    
+    /**
+    Name getter.
+    @return Current value of the private String variable Symbol. 
+    **/
+    public String getSymbol()
+	{
+	    return Symbol;
+	}  
+    
     /**Multiplying factor associated with the unit prefix.**/
-    public final double Factor;
+    private double Factor;
+    
+    /**
+    Factor getter.
+    @return Current value of the private double variable Factor. 
+    **/
+    public double getFactor()
+	{
+	    return Factor;
+	}  
+    
     /**Type of the unit prefix.**/
-    public final PrefixTypes Type;
+    private PrefixTypes Type;
+    
+    /**
+    Type getter.
+    @return Current value of the private PrefixTypes variable Type. 
+    **/
+    public PrefixTypes getType()
+	{
+	    return Type;
+	}  
+    
     /**Usage conditions of the unit prefix.**/
-    public final PrefixUsageTypes PrefixUsage;
+    private PrefixUsageTypes PrefixUsage;
+    
+    /**
+    PrefixUsage getter.
+    @return Current value of the private PrefixUsageTypes variable PrefixUsage. 
+    **/
+    public PrefixUsageTypes getPrefixUsage()
+	{
+	    return PrefixUsage;
+	} 
     
     static String StartHardcoding = CSharpOther.StartHarcoding();
     

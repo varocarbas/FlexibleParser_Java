@@ -34,7 +34,7 @@ public class OperationsOther
 
     private static String GetUnitPString(UnitP unitP)
     {
-        return unitP.OriginalUnitString;
+        return unitP.getOriginalUnitString();
     }
 
     private static String ConcatenateOperationString(String first, String second, char operation)

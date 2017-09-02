@@ -65,7 +65,7 @@ public class Managed
             add(ExceptionInstantiation.NewUnitInfo(firstInfo)); add(ExceptionInstantiation.NewUnitInfo(secondInfo));
         }};
 
-        if (operands2.get(0).BaseTenExponent != operands2.get(1).BaseTenExponent || operands2.get(0).Prefix.Factor != operands2.get(1).Prefix.Factor)
+        if (operands2.get(0).BaseTenExponent != operands2.get(1).BaseTenExponent || operands2.get(0).Prefix.getFactor() != operands2.get(1).Prefix.getFactor())
         {
             //The addition/subtraction might not be performed right away even with normalised values.
             //For example: 5 and 6 from 5*10^2 and 6*10^7 cannot be added right away.
@@ -286,7 +286,7 @@ public class Managed
         outInfo.BaseTenExponent = outInfoNormalised.BaseTenExponent;
         outInfo.Value = outInfoNormalised.Value;
         //Normalised means no prefixes.
-        outInfo.Prefix = new Prefix(outInfo.Prefix.PrefixUsage); 
+        outInfo.Prefix = new Prefix(outInfo.Prefix.getPrefixUsage()); 
 
         return outInfo;
     }
@@ -460,19 +460,19 @@ public class Managed
 
     public static UnitInfo NormaliseUnitInfo(UnitInfo unitInfo)
     {
-        if (unitInfo.Value == 0 && unitInfo.Prefix.Factor == 1.0)
+        if (unitInfo.Value == 0 && unitInfo.Prefix.getFactor() == 1.0)
         {
             return unitInfo;
         }
         UnitInfo outInfo = ExceptionInstantiation.NewUnitInfo(unitInfo);
 
-        if (outInfo.Prefix.Factor != 1)
+        if (outInfo.Prefix.getFactor() != 1)
         {
             outInfo = FromValueToBaseTenExponent
             (
-                outInfo, outInfo.Prefix.Factor, true
+                outInfo, outInfo.Prefix.getFactor(), true
             );
-            outInfo.Prefix = new Prefix(outInfo.Prefix.PrefixUsage);
+            outInfo.Prefix = new Prefix(outInfo.Prefix.getPrefixUsage());
         }
         if (outInfo.Value == 0.0) return outInfo;
 

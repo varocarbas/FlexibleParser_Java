@@ -307,15 +307,15 @@ public class Parse
 
 		parseInfo.UnitInfo.Prefix = new Prefix
 		(
-			parseInfo.UnitInfo.Prefix.PrefixUsage
+			parseInfo.UnitInfo.Prefix.getPrefixUsage()
 		);
 
 		ParseInfo tempSI = CheckSIPrefixes(new ParseInfo(parseInfo));
 		ParseInfo tempBinary = CheckBinaryPrefixes(new ParseInfo(parseInfo));
 
-		if (tempSI.UnitInfo.Prefix.Factor != 1.0)
+		if (tempSI.UnitInfo.Prefix.getFactor() != 1.0)
 		{
-			if (tempBinary.UnitInfo.Prefix.Factor != 1.0)
+			if (tempBinary.UnitInfo.Prefix.getFactor() != 1.0)
 			{
 				//Both SI and binary prefixes were detected, what is an error.
 				parseInfo = new ParseInfo();
@@ -324,7 +324,7 @@ public class Parse
 			}
 			else parseInfo = new ParseInfo(tempSI);
 		}
-		else if (tempBinary.UnitInfo.Prefix.Factor != 1.0)
+		else if (tempBinary.UnitInfo.Prefix.getFactor() != 1.0)
 		{
 			parseInfo = new ParseInfo(tempBinary);
 		}
@@ -468,7 +468,7 @@ public class Parse
 				(
 					parseInfo.UnitInfo, unit, new Prefix
 					(
-						prefix.getValue(), parseInfo.UnitInfo.Prefix.PrefixUsage
+						prefix.getValue(), parseInfo.UnitInfo.Prefix.getPrefixUsage()
 					)
 				);
 
@@ -503,11 +503,11 @@ public class Parse
 
 		if (parseInfo.UnitInfo.Parts.size() == 1)
 		{
-			boolean isCentimetre = parseInfo.UnitInfo.Parts.get(0).Unit == Units.Centimetre;
+			boolean isCentimetre = parseInfo.UnitInfo.Parts.get(0).getUnit() == Units.Centimetre;
 			if(!isCentimetre) isCentimetre = 
 			(
-				parseInfo.UnitInfo.Parts.get(0).Unit == Units.Metre &&
-				parseInfo.UnitInfo.Parts.get(0).Prefix.Factor == 0.01
+				parseInfo.UnitInfo.Parts.get(0).getUnit() == Units.Metre &&
+				parseInfo.UnitInfo.Parts.get(0).getPrefix().getFactor() == 0.01
 			);
 			
 			if(isCentimetre) 
@@ -519,17 +519,20 @@ public class Parse
 			}
 
 			//Parsing an individual unit might output more than 1 part.
-			if (parseInfo.UnitInfo.Parts.get(0).Prefix.Factor != 1.0)
+			if (parseInfo.UnitInfo.Parts.get(0).getPrefix().getFactor() != 1.0)
 			{
 				//1 km should be understood as 1 metre with a kilo prefix, formed
 				//by one part of a metre (no prefix). 
 				parseInfo.UnitInfo.Prefix = new Prefix
 				(
-					parseInfo.UnitInfo.Parts.get(0).Prefix
+					parseInfo.UnitInfo.Parts.get(0).getPrefix()
 				);
-				parseInfo.UnitInfo.Parts.get(0).Prefix = new Prefix
+				parseInfo.UnitInfo.Parts.get(0).setPrefix
 				(
-					parseInfo.UnitInfo.Parts.get(0).Prefix.PrefixUsage
+					new Prefix
+					(
+						parseInfo.UnitInfo.Parts.get(0).getPrefix().getPrefixUsage()
+					)
 				);
 			}
 		}
@@ -752,11 +755,11 @@ public class Parse
 		{
 			UnitPart part = unitInfo.Parts.get(i);
 			UnitTypes type = MethodsCommon.GetTypeFromUnitPart(part);
-			UnitSystems system = MethodsCommon.GetSystemFromUnit(part.Unit, true);
+			UnitSystems system = MethodsCommon.GetSystemFromUnit(part.getUnit(), true);
 			//There are two different scenarios where a conversion might occur: metric vs. English or Imperial vs. USCS.
 			boolean convertEnglish = false;
 
-			if (PartNeedsConversion(system, basicSystem, type) || (convertEnglish = PartNeedsConversionEnglish(unitInfo.System, MethodsCommon.GetSystemFromUnit(part.Unit))))
+			if (PartNeedsConversion(system, basicSystem, type) || (convertEnglish = PartNeedsConversionEnglish(unitInfo.System, MethodsCommon.GetSystemFromUnit(part.getUnit()))))
 			{
 				UnitPart targetPart = GetTargetUnitPart
 				(
@@ -766,7 +769,7 @@ public class Parse
 					)
 				);
 				
-				if (targetPart == null || targetPart.Unit == part.Unit || MethodsCommon.GetTypeFromUnitPart(targetPart) != type)
+				if (targetPart == null || targetPart.getUnit() == part.getUnit() || MethodsCommon.GetTypeFromUnitPart(targetPart) != type)
 				{
 					continue;
 				}
@@ -786,7 +789,7 @@ public class Parse
 				if (tempInfo == null) continue;
 				//AdaptUnitParts doesn't perform an actual conversion, just an adaptation to the target format.
 				//That's why it doesn't account for the target prefix, what explains the modification below.
-				tempInfo.Parts.get(0).Prefix = new Prefix(targetPart.Prefix);
+				tempInfo.Parts.get(0).setPrefix(new Prefix(targetPart.getPrefix()));
 				
 				unitInfo = UpdateNewUnitPart
 				(
@@ -810,9 +813,9 @@ public class Parse
 	{
 		for (UnitPart part2: unitInfo.Parts)
 		{
-			if (part2.Unit == part.Unit) continue;
+			if (part2.getUnit() == part.getUnit()) continue;
 
-			if (MethodsCommon.GetSystemFromUnit(part2.Unit) == targetSystem && MethodsCommon.GetTypeFromUnitPart(part2, true) == partType)
+			if (MethodsCommon.GetSystemFromUnit(part2.getUnit()) == targetSystem && MethodsCommon.GetTypeFromUnitPart(part2, true) == partType)
 			{
 				//Different unit part with the same type and the target system is good enough.
 				//For example: in kg/m*ft, m is a good target for ft.
@@ -1051,13 +1054,13 @@ public class Parse
 			else if (outUnitString != "") outUnitString = outUnitString + "*";
 
 			String unitString = "";
-			if (unitPart.Prefix.Symbol != "" && !unitPart.Unit.toString().toLowerCase().startsWith(unitPart.Prefix.Name.toLowerCase()))
+			if (unitPart.getPrefix().getSymbol() != "" && !unitPart.getUnit().toString().toLowerCase().startsWith(unitPart.getPrefix().getName().toLowerCase()))
 			{
-				unitString = unitPart.Prefix.Symbol;
+				unitString = unitPart.getPrefix().getSymbol();
 			}
 			unitString += Linq.FirstOrDefaultDict
 			(
-				HCUnits.AllUnitSymbols, x -> x.getValue().equals(unitPart.Unit), 
+				HCUnits.AllUnitSymbols, x -> x.getValue().equals(unitPart.getUnit()), 
 				new AbstractMap.SimpleEntry<String, Units>(null, Units.None)
 			)
 			.getKey();
@@ -1106,7 +1109,7 @@ public class Parse
 			}
 			else if (count == 2 && unitParts.size() == 1 && unitParts.get(0).Exponent == 1)
 			{
-				UnitTypes type = MethodsCommon.GetTypeFromUnit(unitParts.get(0).Unit);
+				UnitTypes type = MethodsCommon.GetTypeFromUnit(unitParts.get(0).getUnit());
 				if (type != UnitTypes.None)
 				{
 					//The modifications in GetCompoundComparisonUnitParts generated an individual unit.
@@ -1196,20 +1199,20 @@ public class Parse
 		{
 			for (int i2 = i - 1; i2 >= 0; i2--)
 			{
-				UnitTypes type1 = MethodsCommon.GetTypeFromUnit(outInfo.Parts.get(i).Unit);
-				UnitTypes type2 = MethodsCommon.GetTypeFromUnit(outInfo.Parts.get(i2).Unit);
+				UnitTypes type1 = MethodsCommon.GetTypeFromUnit(outInfo.Parts.get(i).getUnit());
+				UnitTypes type2 = MethodsCommon.GetTypeFromUnit(outInfo.Parts.get(i2).getUnit());
 				if (type1 == type2)
 				{
-					if (outInfo.Parts.get(i).Unit != outInfo.Parts.get(i2).Unit)
+					if (outInfo.Parts.get(i).getUnit() != outInfo.Parts.get(i2).getUnit())
 					{
 						//This method is only called to perform basic unit matching; more specifically, finding
 						//the (dividable) compounds best matching the non-dividable ones. No direct conversions
 						//will be performed among the outputs of this function, that's why the exact units aren't
 						//that important. For example: when dealing with rood/rod, the only output which matters
 						//is the resulting type (i.e., length). It doesn't matter if it is rod or ft or other unit.
-						outInfo.Parts.get(i).Unit = outInfo.Parts.get(i2).Unit;
+						outInfo.Parts.get(i).setUnit(outInfo.Parts.get(i2).getUnit());
 					}
-					else if (checkPrefixes && (outInfo.Parts.get(i).Prefix.Factor != 1.0 || outInfo.Parts.get(i2).Prefix.Factor != 1.0))
+					else if (checkPrefixes && (outInfo.Parts.get(i).getPrefix().getFactor() != 1.0 || outInfo.Parts.get(i2).getPrefix().getFactor() != 1.0))
 					{
 						//Reaching here means that the returned information will be used in an intermediate conversion.
 						//In such a scenario, unit part prefixes might become error sources.
@@ -1217,23 +1220,23 @@ public class Parse
 						(
 							outInfo, Managed.RaiseToIntegerExponent
 							(
-								outInfo.Parts.get(i).Prefix.Factor,
+								outInfo.Parts.get(i).getPrefix().getFactor(),
 								outInfo.Parts.get(i).Exponent
 							), 
 							Operations.Multiplication
 						);
-						outInfo.Parts.get(i).Prefix = new Prefix();
+						outInfo.Parts.get(i).setPrefix(new Prefix());
 
 						outInfo = Managed.PerformManagedOperationUnits
 						(
 							outInfo, Managed.RaiseToIntegerExponent
 							(
-								outInfo.Parts.get(i2).Prefix.Factor,
+								outInfo.Parts.get(i2).getPrefix().getFactor(),
 								outInfo.Parts.get(i2).Exponent
 							), 
 							Operations.Multiplication
 						);
-						outInfo.Parts.get(i2).Prefix = new Prefix();
+						outInfo.Parts.get(i2).setPrefix(new Prefix());
 					}
 
 					outInfo.Parts.get(i).Exponent += outInfo.Parts.get(i2).Exponent;
@@ -1270,7 +1273,7 @@ public class Parse
 
 		for (UnitPart part: unitParts)
 		{
-			UnitTypes type = MethodsCommon.GetTypeFromUnit(part.Unit);
+			UnitTypes type = MethodsCommon.GetTypeFromUnit(part.getUnit());
 			int exponent = part.Exponent;
 			if (Linq.FirstOrDefault(compoundParts, x -> x.Type.equals(type) && x.Exponent.equals(exponent), null) == null)
 			{
@@ -1327,7 +1330,7 @@ public class Parse
 			new ParseInfo
 			(
 				0.0, exponent.AfterString,
-				parseInfo.UnitInfo.Prefix.PrefixUsage
+				parseInfo.UnitInfo.Prefix.getPrefixUsage()
 			)
 		);
 
@@ -1363,7 +1366,8 @@ public class Parse
 				(
 					UnitPartInternal.NewUnitPart
 					(
-						parseInfo2.UnitInfo.Unit, parseInfo2.UnitInfo.Prefix.Factor,
+						parseInfo2.UnitInfo.Unit, 
+						parseInfo2.UnitInfo.Prefix.getFactor(),
 						exponent.Exponent
 					)		
 				);

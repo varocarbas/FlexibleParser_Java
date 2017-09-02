@@ -17,9 +17,9 @@ public class MethodsErrors
         {
             outError = ErrorTypes.InvalidUnit;
         }
-        else if (original.Error.Type != ErrorTypes.None)
+        else if (original.getError().Type != ErrorTypes.None)
         {
-            outError = original.Error.Type;
+            outError = original.getError().Type;
         }
         else if (targetInfo.Error.Type != ErrorTypes.None)
         {
@@ -59,7 +59,7 @@ public class MethodsErrors
                 	originalInfo.Parts, x -> Linq.FirstOrDefault
                 	(
                 		targetInfo.Parts, y -> y.Exponent.equals(x.Exponent) &&
-                        y.Unit.equals(x.Unit), null
+                        y.getUnit().equals(x.getUnit()), null
                 	)
                 	!= null
                 );
@@ -85,7 +85,7 @@ public class MethodsErrors
         {
             outError = ErrorTypes.InvalidUnitConversion;
         }
-        else if (MethodsCommon.IsUnnamedUnit(originalPart.Unit) || MethodsCommon.IsUnnamedUnit(targetPart.Unit))
+        else if (MethodsCommon.IsUnnamedUnit(originalPart.getUnit()) || MethodsCommon.IsUnnamedUnit(targetPart.getUnit()))
         {
             //Finding an unnamed compound here would be certainly an error.
             outError = ErrorTypes.InvalidUnitConversion;
@@ -119,7 +119,7 @@ public class MethodsErrors
     {
         return
         (
-            first.Unit == Units.None || second.Unit == Units.None ?
+            first.getUnit() == Units.None || second.getUnit() == Units.None ?
             ErrorTypes.InvalidUnit : 
             GetOperationError
             (
@@ -135,7 +135,7 @@ public class MethodsErrors
         return
         (
             //unitP always stores the information of the unit operand.
-            unitP.Unit == Units.None ? ErrorTypes.InvalidUnit :
+            unitP.getUnit() == Units.None ? ErrorTypes.InvalidUnit :
             GetOperationError
             (
                 firstInfo, secondInfo, operation

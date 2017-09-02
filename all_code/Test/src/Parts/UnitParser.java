@@ -85,7 +85,7 @@ public class UnitParser
         PrintSampleItem("Comp6", new UnitP("m/s2")); //m/s2, a valid SI acceleration unit (one type check after all the unit operations/simplifications were performed).
 
         //--- The unit parts are automatically populated when instantiating a valid UnitP variable.
-        if (Linq.FirstOrDefault(new UnitP("1 N").UnitParts, x -> !new UnitP("1 kg*m/s2").UnitParts.contains(x), null) == null)
+        if (Linq.FirstOrDefault(new UnitP("1 N").getUnitParts(), x -> !new UnitP("1 kg*m/s2").getUnitParts().contains(x), null) == null)
         {
             //This condition is true.
         }
@@ -135,15 +135,14 @@ public class UnitParser
         PrintSampleItem("StrNum5", new UnitP("9999.99999E1000")); //999999.99*10^998 unitless.
         PrintSampleItem("StrNum6", new UnitP("1234E1.5")); //Error. Equivalently to what happens with .NET numeric parsing, only integer exponents are supported.
 
-
         //------ Errors and exceptions.
 
         //--- All the error information is stored under UnitPVariable.Error.
-        if (new UnitP("1 m/s").Error.Type == UnitP.ErrorTypes.None)
+        if (new UnitP("1 m/s").getError().Type == UnitP.ErrorTypes.None)
         {
             //This condition is true.
         }
-        if (new UnitP("wrong").Error.Type != UnitP.ErrorTypes.None)
+        if (new UnitP("wrong").getError().Type != UnitP.ErrorTypes.None)
         {
             //This condition is true.
         }
@@ -207,7 +206,7 @@ public class UnitParser
         PrintSampleItem("Pref2", new UnitP("1 Kibit")); //Binary prefix Kibi + bit.
 
         //--- All the prefix-related information is stored under UnitPVariable.UnitPrefix.
-        if (new UnitP(1.0, "km").UnitPrefix.equals(new UnitP(1.0, "ks").UnitPrefix))
+        if (new UnitP(1.0, "km").getUnitPrefix().equals(new UnitP(1.0, "ks").getUnitPrefix()))
         {
             //This condition is true.
         }
@@ -386,12 +385,12 @@ public class UnitParser
         (
             sampleId + " - " +
             (
-                unitP.Error.Type != UnitP.ErrorTypes.None ?
-            	"Error. " + unitP.Error.Message :
-                unitP.ValueAndUnitString + " (" +
-                unitP.Unit.toString() + ", " +
-                unitP.UnitType.toString() + ", " +
-                unitP.UnitSystem.toString() + ")."
+                unitP.getError().Type != UnitP.ErrorTypes.None ?
+            	"Error. " + unitP.getError().Message :
+                unitP.getValueAndUnitString() + " (" +
+                unitP.getUnit().toString() + ", " +
+                unitP.getUnitType().toString() + ", " +
+                unitP.getUnitSystem().toString() + ")."
             )
         );
     }

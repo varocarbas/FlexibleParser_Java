@@ -7,12 +7,76 @@ import InternalUnitParser.Operations.*;
 public class UnitPart
 {
     /**Unit associated with the current part.**/
-    public Units Unit;
+    private Units Unit;
+    
+    /**
+    Units getter.
+    @return Current value of the private Units variable Unit. 
+    **/
+    public Units getUnit()
+	{
+	    return Unit;
+	} 
+    
+    /**
+    Unit setter.
+    @param unit New value for the private Units variable Unit.  
+    **/
+    public void setUnit(Units unit)
+	{
+	    Unit = unit;
+	} 
+    
     /**Prefix information associated with the current part.**/
-    public Prefix Prefix;
+    private Prefix Prefix;
+    
+    /**
+    Prefix getter.
+    @return Current value of the private Prefix variable Prefix. 
+    **/
+    public Prefix getPrefix()
+	{
+	    return 
+	    (
+	    	Prefix == null ? null :
+	    	new Prefix(Prefix)
+	    );
+	} 
+    
+    /**
+    Prefix setter.
+    @param prefix New value for the private Prefix variable Prefix.  
+    **/
+    public void setPrefix(Prefix prefix)
+	{
+	    Prefix = 
+	    (
+	    	prefix == null ? null :
+	    	new Prefix(prefix)
+	    );
+	} 
+    
     /**Exponent associated with the current part.**/
     public Integer Exponent;
-
+    
+    /**
+    Exponent getter.
+    @return Current value of the private Integer variable Exponent. 
+    **/
+    public Integer getExponent()
+	{
+    	return Exponent;
+	} 
+    
+    /**
+    Exponent setter.
+    @param exponent New value for the private Integer variable Exponent.  
+    **/
+    public void setExponent(Integer exponent)
+	{
+    	Exponent = exponent;
+	} 
+    
     static String StartHardcoding = CSharpOther.StartHarcoding();
     
     /**Initialises a new UnitPart instance.

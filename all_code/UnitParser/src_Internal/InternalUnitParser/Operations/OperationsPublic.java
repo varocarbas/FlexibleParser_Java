@@ -164,7 +164,7 @@ public class OperationsPublic
     {
         UnitInfo outInfo = ExceptionInstantiation.NewUnitInfo
         (
-        	firstInfo, unitP.Unit, new ArrayList<UnitPart>(unitP.UnitParts)
+        	firstInfo, unitP.getUnit(), new ArrayList<UnitPart>(unitP.getUnitParts())
         );
         
         outInfo.Error = ExceptionInstantiation.NewErrorInfo
@@ -220,11 +220,11 @@ public class OperationsPublic
 
     static UnitInfo InversePrefix(UnitInfo outInfo)
     {
-        if (outInfo.Prefix.Factor == 1.0) return outInfo;
+        if (outInfo.Prefix.getFactor() == 1.0) return outInfo;
 
         outInfo = ExceptionInstantiation.NewUnitInfo
         (
-        	outInfo, new Prefix(outInfo.Prefix.PrefixUsage)
+        	outInfo, new Prefix(outInfo.Prefix.getPrefixUsage())
         );
 
         //No need to find a new prefix.
@@ -232,7 +232,7 @@ public class OperationsPublic
         (
         	outInfo, Managed.PerformManagedOperationValues
             (
-              	1.0, outInfo.Prefix.Factor, Operations.Division
+              	1.0, outInfo.Prefix.getFactor(), Operations.Division
             ), 
         	Operations.Multiplication
         );

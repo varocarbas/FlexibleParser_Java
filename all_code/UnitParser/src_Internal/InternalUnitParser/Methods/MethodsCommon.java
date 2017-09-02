@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
-
 @SuppressWarnings("serial")
 public class MethodsCommon
 {
@@ -157,13 +156,13 @@ public class MethodsCommon
 			else if (outUnitString != "") outUnitString = outUnitString + "*";
 
 			String unitString = "";
-			if (unitPart.Prefix.Symbol != "" && !unitPart.Unit.toString().toLowerCase().startsWith(unitPart.Prefix.Name.toLowerCase()))
+			if (unitPart.getPrefix().getSymbol() != "" && !unitPart.getUnit().toString().toLowerCase().startsWith(unitPart.getPrefix().getName().toLowerCase()))
 			{
-				unitString = unitPart.Prefix.Symbol;
+				unitString = unitPart.getPrefix().getSymbol();
 			}
 			unitString += Linq.FirstOrDefaultDict
 			(
-				HCUnits.AllUnitSymbols, x -> x.getValue().equals(unitPart.Unit), 
+				HCUnits.AllUnitSymbols, x -> x.getValue().equals(unitPart.getUnit()), 
 				new AbstractMap.SimpleEntry<String, Units>(null, Units.None)
 			)
 			.getKey(); 
@@ -192,9 +191,9 @@ public class MethodsCommon
 				)
 				.getKey();
 						
-				if (unitInfo.Prefix.Symbol != "")
+				if (unitInfo.Prefix.getSymbol() != "")
 				{
-					unitString = unitInfo.Prefix.Symbol + unitString;
+					unitString = unitInfo.Prefix.getSymbol() + unitString;
 				}
 			}
 		}
@@ -235,7 +234,7 @@ public class MethodsCommon
 		if (simplestApproach)
 		{
 			//This is reached when calling from parts of the code likely to provoke an infinite loop. 
-			UnitTypes type2 = GetTypeFromUnit(unitPart2.Unit);
+			UnitTypes type2 = GetTypeFromUnit(unitPart2.getUnit());
 			
 			if (type2 == UnitTypes.Length)
 			{
@@ -263,7 +262,7 @@ public class MethodsCommon
 		UnitInfo unitInfo = null;
 		try
 		{
-			unitInfo = new UnitInfo(unitPart2.Unit, unitPart2.Prefix.Factor);        	
+			unitInfo = new UnitInfo(unitPart2.getUnit(), unitPart2.getPrefix().getFactor());        	
 		}
 		catch(Exception e)
 		{ 
@@ -419,7 +418,7 @@ public class MethodsCommon
 			}
 			else if (count == 2 && unitParts.size() == 1 && unitParts.get(0).Exponent == 1)
 			{
-				UnitTypes type = GetTypeFromUnit(unitParts.get(0).Unit);
+				UnitTypes type = GetTypeFromUnit(unitParts.get(0).getUnit());
 				if (type != UnitTypes.None)
 				{
 					//The modifications in GetCompoundComparisonUnitParts generated an individual unit.
@@ -441,7 +440,7 @@ public class MethodsCommon
 
 		for (UnitPart part: unitParts)
 		{
-			UnitTypes type = GetTypeFromUnit(part.Unit);
+			UnitTypes type = GetTypeFromUnit(part.getUnit());
 			int exponent = part.Exponent;
 			if (Linq.FirstOrDefault(compoundParts, x -> x.Type.equals(type) && x.Exponent.equals(exponent), null) == null)
 			{
@@ -666,20 +665,20 @@ public class MethodsCommon
 		{
 			for (int i2 = i - 1; i2 >= 0; i2--)
 			{
-				UnitTypes type1 = GetTypeFromUnit(outInfo.Parts.get(i).Unit);
-				UnitTypes type2 = GetTypeFromUnit(outInfo.Parts.get(i2).Unit);
+				UnitTypes type1 = GetTypeFromUnit(outInfo.Parts.get(i).getUnit());
+				UnitTypes type2 = GetTypeFromUnit(outInfo.Parts.get(i2).getUnit());
 				if (type1 == type2)
 				{
-					if (outInfo.Parts.get(i).Unit != outInfo.Parts.get(i2).Unit)
+					if (outInfo.Parts.get(i).getUnit() != outInfo.Parts.get(i2).getUnit())
 					{
 						//This method is only called to perform basic unit matching; more specifically, finding
 						//the (dividable) compounds best matching the non-dividable ones. No direct conversions
 						//will be performed among the outputs of this function, that's why the exact units aren't
 						//that important. For example: when dealing with rood/rod, the only output which matters
 						//is the resulting type (i.e., length). It doesn't matter if it is rod or ft or other unit.
-						outInfo.Parts.get(i).Unit = outInfo.Parts.get(i2).Unit;
+						outInfo.Parts.get(i).setUnit(outInfo.Parts.get(i2).getUnit());
 					}
-					else if (checkPrefixes && (outInfo.Parts.get(i).Prefix.Factor != 1.0 || outInfo.Parts.get(i2).Prefix.Factor != 1.0))
+					else if (checkPrefixes && (outInfo.Parts.get(i).getPrefix().getFactor() != 1.0 || outInfo.Parts.get(i2).getPrefix().getFactor() != 1.0))
 					{
 						//Reaching here means that the returned information will be used in an intermediate conversion.
 						//In such a scenario, unit part prefixes might become error sources.
@@ -687,25 +686,25 @@ public class MethodsCommon
 						(
 							outInfo, Managed.RaiseToIntegerExponent
 							(
-								outInfo.Parts.get(i).Prefix.Factor,
+								outInfo.Parts.get(i).getPrefix().getFactor(),
 								outInfo.Parts.get(i).Exponent
 							),
 							Operations.Multiplication
 						);
 
-						outInfo.Parts.get(i).Prefix = new Prefix();
+						outInfo.Parts.get(i).setPrefix(new Prefix());
 
 						outInfo = Managed.PerformManagedOperationUnits
 						(
 							outInfo, Managed.RaiseToIntegerExponent
 							(
-								outInfo.Parts.get(i2).Prefix.Factor,
+								outInfo.Parts.get(i2).getPrefix().getFactor(),
 								outInfo.Parts.get(i2).Exponent
 							),
 							Operations.Multiplication
 						);
 						
-						outInfo.Parts.get(i2).Prefix = new Prefix();
+						outInfo.Parts.get(i2).setPrefix(new Prefix());
 					}
 
 					outInfo.Parts.get(i).Exponent += outInfo.Parts.get(i2).Exponent;
@@ -746,7 +745,7 @@ public class MethodsCommon
 
 		for (UnitPart part: unitInfo.Parts)
 		{
-			Units partUnit = part.Unit;
+			Units partUnit = part.getUnit();
 
 			UnitTypes partType = GetTypeFromUnit(partUnit);
 			UnitSystems system2 = GetSystemFromUnit(partUnit);
@@ -848,16 +847,16 @@ public class MethodsCommon
 	{
 		if (unitInfo.Parts.size() == 1 && unitInfo.Parts.get(0).Exponent == 1.0)
 		{
-			if (HCMain.AllUnitConversionFactors.containsKey(unitInfo.Parts.get(0).Unit))
+			if (HCMain.AllUnitConversionFactors.containsKey(unitInfo.Parts.get(0).getUnit()))
 			{
-				unitInfo.Unit = unitInfo.Parts.get(0).Unit;
+				unitInfo.Unit = unitInfo.Parts.get(0).getUnit();
 				unitInfo.Type = HCMain.AllUnitTypes.get(unitInfo.Unit);
 				unitInfo.System = HCMain.AllUnitSystems.get(unitInfo.Unit);
 				unitInfo = Managed.PerformManagedOperationUnits
 				(
-					unitInfo, unitInfo.Parts.get(0).Prefix.Factor, Operations.Multiplication
+					unitInfo, unitInfo.Parts.get(0).getPrefix().getFactor(), Operations.Multiplication
 				);
-				unitInfo.Parts.get(0).Prefix = new Prefix();
+				unitInfo.Parts.get(0).setPrefix(new Prefix());
 			}
 		}
 
@@ -949,17 +948,17 @@ public class MethodsCommon
 			        //(
 					//	x => GetUnitSystem(x.Unit) == UnitSystems.None
 					//)        			
-					int result = new Boolean(UnitP.GetUnitSystem(first.Unit) == UnitSystems.None).compareTo
+					int result = new Boolean(UnitP.GetUnitSystem(first.getUnit()) == UnitSystems.None).compareTo
 					(
-						UnitP.GetUnitSystem(second.Unit) == UnitSystems.None
+						UnitP.GetUnitSystem(second.getUnit()) == UnitSystems.None
 					);
 					
 					return
 					(
 						result != 0 ? result ://Original C# code -> .ThenBy(x => AllMetricEnglish[GetUnitSystem(x.Unit)] == UnitSystems.Imperial)
-						new Boolean(HCMain.AllMetricEnglish.get(UnitP.GetUnitSystem(first.Unit)) == UnitSystems.Imperial).compareTo
+						new Boolean(HCMain.AllMetricEnglish.get(UnitP.GetUnitSystem(first.getUnit())) == UnitSystems.Imperial).compareTo
 						(
-							(HCMain.AllMetricEnglish.get(UnitP.GetUnitSystem(second.Unit)) == UnitSystems.Imperial)
+							(HCMain.AllMetricEnglish.get(UnitP.GetUnitSystem(second.getUnit())) == UnitSystems.Imperial)
 						)	
 					);
 				}        				
@@ -968,7 +967,7 @@ public class MethodsCommon
 
 		for (int i = unitInfo.Parts.size() - 1; i >= 0; i--)
 		{
-			if (unitInfo.Parts.get(i).Unit == Units.None || unitInfo.Parts.get(i).Unit == Units.Unitless)
+			if (unitInfo.Parts.get(i).getUnit() == Units.None || unitInfo.Parts.get(i).getUnit() == Units.Unitless)
 			{
 				continue;
 			}
@@ -990,7 +989,7 @@ public class MethodsCommon
 			for (int i2 = i - 1; i2 >= 0; i2--)
 			{
 				boolean remove = false;
-				if (unitInfo.Parts.get(i).Unit == unitInfo.Parts.get(i2).Unit)
+				if (unitInfo.Parts.get(i).getUnit() == unitInfo.Parts.get(i2).getUnit())
 				{
 					remove = true;
 				}
@@ -1024,7 +1023,7 @@ public class MethodsCommon
    
 	static UnitInfo SimplifyUnitPartsRemove(UnitInfo unitInfo, int i, int i2)
 	{
-		if (unitInfo.Parts.get(i).Prefix.Factor == unitInfo.Parts.get(i2).Prefix.Factor)
+		if (unitInfo.Parts.get(i).getPrefix().getFactor() == unitInfo.Parts.get(i2).getPrefix().getFactor())
 		{
 			unitInfo.Parts.get(i).Exponent += unitInfo.Parts.get(i2).Exponent;
 		}
@@ -1044,7 +1043,7 @@ public class MethodsCommon
 		UnitInfo newInfo = GetNewPrefixUnitPart(unitInfo, i, i2);
 		newInfo = Managed.PerformManagedOperationUnits
 		(
-			newInfo, unitInfo.Prefix.Factor,
+			newInfo, unitInfo.Prefix.getFactor(),
 			Operations.Multiplication
 		);
 
@@ -1053,7 +1052,7 @@ public class MethodsCommon
 			unitInfo, newInfo, Operations.Multiplication
 		);
 
-		unitInfo.Parts.get(i).Prefix = new Prefix(unitInfo.Parts.get(i).Prefix.PrefixUsage);
+		unitInfo.Parts.get(i).setPrefix(new Prefix(unitInfo.Parts.get(i).getPrefix().getPrefixUsage()));
 		unitInfo.Parts.get(i).Exponent = unitInfo.Parts.get(i).Exponent + unitInfo.Parts.get(i2).Exponent;
 
 		return unitInfo;
@@ -1063,13 +1062,13 @@ public class MethodsCommon
 	{
 		UnitInfo info1 = Managed.RaiseToIntegerExponent
 		(
-			unitInfo.Parts.get(i).Prefix.Factor,
+			unitInfo.Parts.get(i).getPrefix().getFactor(),
 			unitInfo.Parts.get(i).Exponent
 		);
 
 		UnitInfo info2 = Managed.RaiseToIntegerExponent
 		(
-			unitInfo.Parts.get(i2).Prefix.Factor,
+			unitInfo.Parts.get(i2).getPrefix().getFactor(),
 			unitInfo.Parts.get(i2).Exponent
 		);
 
@@ -1083,8 +1082,8 @@ public class MethodsCommon
 	
 	public static UnitInfo UnitPartToUnitInfo(UnitPart unitPart, double value)
 	{
-		Units unit = unitPart.Unit;
-		UnitInfo outUnitInfo = ExceptionInstantiation.NewUnitInfo(value, unit, unitPart.Prefix);
+		Units unit = unitPart.getUnit();
+		UnitInfo outUnitInfo = ExceptionInstantiation.NewUnitInfo(value, unit, unitPart.getPrefix());
 		outUnitInfo = UpdateMainUnitVariables(outUnitInfo);
 
 		UnitTypes type = GetTypeFromUnitPart(unitPart);
@@ -1153,7 +1152,7 @@ public class MethodsCommon
 	
 	static boolean UnitPartsAreEquivalent(UnitPart unitPart1, UnitPart unitPart2)
 	{
-		if (unitPart1.Unit == unitPart2.Unit && unitPart1.Prefix == unitPart2.Prefix)
+		if (unitPart1.getUnit() == unitPart2.getUnit() && unitPart1.getPrefix() == unitPart2.getPrefix())
 		{
 			if (Math.abs(unitPart1.Exponent) == Math.abs(unitPart2.Exponent))
 			{
@@ -1200,7 +1199,7 @@ public class MethodsCommon
 		UnitInfo allPrefixes = ExceptionInstantiation.NewUnitInfo(1.0);
 		HashMap<Units, Double> basicPrefixes = (HashMap<Units, Double>) basicUnitParts.stream().collect
 		(
-			Collectors.toMap(x -> x.Unit, x -> x.Prefix.Factor)
+			Collectors.toMap(x -> x.getUnit(), x -> x.getPrefix().getFactor())
 		);
 		
 		for (UnitPart part: unitInfo.Parts)
@@ -1209,7 +1208,7 @@ public class MethodsCommon
 			{
 				UnitInfo prefixRem = Managed.PerformManagedOperationValues
 				(
-					part.Prefix.Factor, basicPrefixes.get(part.Unit), Operations.Division
+					part.getPrefix().getFactor(), basicPrefixes.get(part.getUnit()), Operations.Division
 				);
 
 				prefixRem = Managed.RaiseToIntegerExponent(prefixRem, part.Exponent);
@@ -1219,7 +1218,7 @@ public class MethodsCommon
 					allPrefixes, prefixRem, Operations.Multiplication
 				);
 
-				part.Prefix = new Prefix(basicPrefixes.get(part.Unit));
+				part.setPrefix(new Prefix(basicPrefixes.get(part.getUnit())));
 			}
 		}
 
@@ -1258,7 +1257,7 @@ public class MethodsCommon
 		{
 			if (noPrefixes)
 			{
-				if (Linq.FirstOrDefault(unitInfo.Parts, x -> x.Unit.equals(basic.Unit) && x.Exponent.equals(basic.Exponent), null) == null)
+				if (Linq.FirstOrDefault(unitInfo.Parts, x -> x.getUnit().equals(basic.getUnit()) && x.Exponent.equals(basic.Exponent), null) == null)
 				{
 					return false;
 				}
@@ -1285,8 +1284,8 @@ public class MethodsCommon
 		{
 			UnitInfo infoPart = ExceptionInstantiation.NewUnitInfo
 			(
-				0.0, unitInfo.Parts.get(i).Unit,
-				unitInfo.Parts.get(i).Prefix, false
+				0.0, unitInfo.Parts.get(i).getUnit(),
+				unitInfo.Parts.get(i).getPrefix(), false
 			);
 
 			if (IsDividable(infoPart))
@@ -1312,7 +1311,7 @@ public class MethodsCommon
 	{
 		UnitTypes nonDividableType =
 		(
-			HCUnits.AllNonDividableUnits.contains(unitInfo.Parts.get(i).Unit) ?
+			HCUnits.AllNonDividableUnits.contains(unitInfo.Parts.get(i).getUnit()) ?
 			partInfo.Type : UnitTypes.None
 		);
 
@@ -1350,14 +1349,14 @@ public class MethodsCommon
 
 		for (UnitPart part: compoundUnitParts)
 		{
-			UnitInfo newPrefixInfo = ExceptionInstantiation.NewUnitInfo(Units.None, part.Prefix.Factor);
+			UnitInfo newPrefixInfo = ExceptionInstantiation.NewUnitInfo(Units.None, part.getPrefix().getFactor());
 
-			if (firstTime && unitInfo.Parts.get(i).Prefix.Factor != 1.0)
+			if (firstTime && unitInfo.Parts.get(i).getPrefix().getFactor() != 1.0)
 			{
 				//Finding the most adequate new prefix isn't required at this point.
 				newPrefixInfo = Managed.PerformManagedOperationValues
 				(
-					unitInfo.Parts.get(i).Prefix.Factor, part.Prefix.Factor,
+					unitInfo.Parts.get(i).getPrefix().getFactor(), part.getPrefix().getFactor(),
 					Operations.Multiplication
 				);
 
@@ -1374,7 +1373,7 @@ public class MethodsCommon
 			(
 				UnitPartInternal.NewUnitPart
 				(
-					part.Unit, newPrefixInfo.Prefix.Factor,
+					part.getUnit(), newPrefixInfo.Prefix.getFactor(),
 					part.Exponent * unitInfo.Parts.get(i).Exponent
 				)
 			);
@@ -1615,7 +1614,7 @@ public class MethodsCommon
 	
 	public static boolean PrefixCanBeUsedWithUnitBasicCheck(UnitInfo unitInfo, PrefixTypes prefixType)
 	{
-		if (unitInfo.Prefix.PrefixUsage == PrefixUsageTypes.AllUnits) return true;
+		if (unitInfo.Prefix.getPrefixUsage() == PrefixUsageTypes.AllUnits) return true;
 
 		if (prefixType == PrefixTypes.SI)
 		{
@@ -1670,7 +1669,7 @@ public class MethodsCommon
 				(
 					unitInfo, targetInfo, ExceptionInstantiation.NewUnitInfo(prefixFactor)
 				);
-				unitInfo.Prefix = new Prefix(prefixFactor, unitInfo.Prefix.PrefixUsage);
+				unitInfo.Prefix = new Prefix(prefixFactor, unitInfo.Prefix.getPrefixUsage());
 				break;
 			}
 		}
@@ -1822,9 +1821,9 @@ public class MethodsCommon
 		{
 			outError = ErrorTypes.InvalidUnit;
 		}
-		else if (original.Error.Type != ErrorTypes.None)
+		else if (original.getError().Type != ErrorTypes.None)
 		{
-			outError = original.Error.Type;
+			outError = original.getError().Type;
 		}
 		else if (targetInfo.Error.Type != ErrorTypes.None)
 		{
@@ -1848,7 +1847,7 @@ public class MethodsCommon
 			(
 				i, UnitPartInternal.NewUnitPart
 				(
-					outInfo.Parts.get(i).Unit, outInfo.Parts.get(i).Prefix.Factor,
+					outInfo.Parts.get(i).getUnit(), outInfo.Parts.get(i).getPrefix().getFactor(),
 					-1 * outInfo.Parts.get(i).Exponent
 				)
 			);

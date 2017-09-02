@@ -56,7 +56,7 @@ public class Conversions
                 //Accounting for cases like m4 converted to litre where 1 metre is left uncompensated.
                 UnitPart newPart = UnitPartInternal.NewUnitPart
                 (
-                    parts2.get(0).Unit, parts2.get(0).Prefix.Factor, sign * exponent
+                    parts2.get(0).getUnit(), parts2.get(0).getPrefix().getFactor(), sign * exponent
                 );
                 unitInfo.Parts.add(newPart);
 
@@ -87,7 +87,7 @@ public class Conversions
         outExponent = sign * outExponent;
 
         unitInfo = Managed.PerformManagedOperationUnits(unitInfo, tempInfo, Operations.Multiplication);
-        unitInfo.Parts.get(i).Unit = parts2.get(1).Unit;
+        unitInfo.Parts.get(i).setUnit(parts2.get(1).getUnit());
         //outExponent indicates the number of times which the target exponent is
         //repeated to match the original unit. For example: in L to m3, the final
         //unit is m and outExponent is 1 (= the original unit contains 1 target 
@@ -206,7 +206,7 @@ public class Conversions
             }
 
             outInfo = ExceptionInstantiation.NewUnitInfo(targetInfo);
-            outInfo.Prefix = new Prefix(outInfo.Prefix.PrefixUsage);
+            outInfo.Prefix = new Prefix(outInfo.Prefix.getPrefixUsage());
             outInfo.Value = tempInfo.Value;
             outInfo.BaseTenExponent = tempInfo.BaseTenExponent;
 
@@ -217,7 +217,7 @@ public class Conversions
                 //value has to be multiplied by the prefix when reaching this point (i.e., result delivered to the user).
                 outInfo = Managed.PerformManagedOperationUnits
                 (
-                	outInfo, targetInfo.Prefix.Factor, Operations.Multiplication
+                	outInfo, targetInfo.Prefix.getFactor(), Operations.Multiplication
                 );
             }
         }
@@ -234,7 +234,7 @@ public class Conversions
         {
             outError = ErrorTypes.InvalidUnitConversion;
         }
-        else if (MethodsCommon.IsUnnamedUnit(originalPart.Unit) || MethodsCommon.IsUnnamedUnit(targetPart.Unit))
+        else if (MethodsCommon.IsUnnamedUnit(originalPart.getUnit()) || MethodsCommon.IsUnnamedUnit(targetPart.getUnit()))
         {
             //Finding an unnamed compound here would be certainly an error.
             outError = ErrorTypes.InvalidUnitConversion;
@@ -253,11 +253,11 @@ public class Conversions
             outInfo.BaseTenExponent -= 2; 
         }
 
-        if (unitPart.Prefix.Factor != 1 && exponent != 1)
+        if (unitPart.getPrefix().getFactor() != 1 && exponent != 1)
         {
             UnitInfo prefixInfo = Managed.RaiseToIntegerExponent
             (
-                unitPart.Prefix.Factor, exponent
+                unitPart.getPrefix().getFactor(), exponent
             );
 
             outInfo.Prefix = new Prefix();
@@ -315,7 +315,7 @@ public class Conversions
 
     static ArrayList<UnitPart> GetUnitPartsConversionSameType(ArrayList<UnitPart> unitParts)
     {
-        if (MethodsCommon.GetTypeFromUnitInfo(ExceptionInstantiation.NewUnitInfo(unitParts.get(0).Unit, 1.0)) == MethodsCommon.GetTypeFromUnitInfo(ExceptionInstantiation.NewUnitInfo(unitParts.get(1).Unit, 1.0)))
+        if (MethodsCommon.GetTypeFromUnitInfo(ExceptionInstantiation.NewUnitInfo(unitParts.get(0).getUnit(), 1.0)) == MethodsCommon.GetTypeFromUnitInfo(ExceptionInstantiation.NewUnitInfo(unitParts.get(1).getUnit(), 1.0)))
         {
             unitParts.get(0).Exponent = 1;
             unitParts.get(1).Exponent = 1;
@@ -367,7 +367,7 @@ public class Conversions
             	(
             		x -> Linq.FirstOrDefault
             		(
-            			targetInfo.Parts, y -> y.Exponent.equals(x.Exponent) && y.Unit.equals(x.Unit), null
+            			targetInfo.Parts, y -> y.Exponent.equals(x.Exponent) && y.getUnit().equals(x.getUnit()), null
             		)
             		!= null
             	)
@@ -454,7 +454,7 @@ public class Conversions
             (
             	targets, x -> MethodsCommon.GetTypeFromUnitPart(x).equals(type), null
             );
-            if (target == null || target.Unit == Units.None) continue;
+            if (target == null || target.getUnit() == Units.None) continue;
 
             conversionItems.OutDict.put(original, target);
         }
@@ -529,7 +529,7 @@ public class Conversions
                 if (conversionItems.Others.size() == 0) return new ConversionItems();
 
                 conversionItems = MatchNonDividableParts(conversionItems, i);
-                if (conversionItems.TempPair.getKey() == null || conversionItems.TempPair.getKey().Unit == Units.None)
+                if (conversionItems.TempPair.getKey() == null || conversionItems.TempPair.getKey().getUnit() == Units.None)
                 {
                     //After not having found a direct match for the given non-dividable, an indirect
                     //approach (via its type) will be tried.
@@ -600,7 +600,7 @@ public class Conversions
 
         for (int i = nonOriginals.size() - 1; i >= 0; i--)
         {
-            if (!HCUnits.AllNonDividableUnits.contains(nonOriginals.get(i).Unit)) continue;
+            if (!HCUnits.AllNonDividableUnits.contains(nonOriginals.get(i).getUnit())) continue;
 
             if (!conversionItems.NonDividables.contains(nonOriginals.get(i)))
             {
@@ -625,7 +625,7 @@ public class Conversions
 
         UnitPart matchedPart = Linq.FirstOrDefault
         (
-        	conversionItems.Others, x -> x.Unit.equals(conversionItems.NonDividables.get(i).Unit), null
+        	conversionItems.Others, x -> x.getUnit().equals(conversionItems.NonDividables.get(i).getUnit()), null
         );
         		
         if (matchedPart != null)
@@ -646,7 +646,7 @@ public class Conversions
         {
         	matchedPart = Linq.FirstOrDefault
         	(
-        		conversionItems.Others, x -> nonPart.Type.equals(MethodsCommon.GetTypeFromUnit(x.Unit)), null
+        		conversionItems.Others, x -> nonPart.Type.equals(MethodsCommon.GetTypeFromUnit(x.getUnit())), null
         	); 
         	
             if (matchedPart == null)
@@ -664,7 +664,7 @@ public class Conversions
 
             parts2.add
             (
-                new UnitPart(matchedPart.Unit, nonPart.Exponent)
+                new UnitPart(matchedPart.getUnit(), nonPart.Exponent)
             );
             conversionItems.Others.remove(matchedPart);
 
@@ -674,8 +674,8 @@ public class Conversions
                 (
                     UnitPartInternal.NewUnitPart
                     (
-                        matchedPart.Unit, 
-                        matchedPart.Prefix.Factor,
+                        matchedPart.getUnit(), 
+                        matchedPart.getPrefix().getFactor(),
                         exponent 
                     )
                 );
@@ -700,7 +700,7 @@ public class Conversions
         (
             conversionItems.NonDividables.get(i), UnitPartInternal.NewUnitPart
             (
-                tempInfo.Unit, tempInfo.Prefix.Factor,
+                tempInfo.Unit, tempInfo.Prefix.getFactor(),
                 conversionItems.NonDividables.get(i).Exponent
             )
         );
@@ -712,7 +712,7 @@ public class Conversions
     {
         ArrayList<UnitPart> outList = Linq.Where
         (
-        	iniList, x -> HCUnits.AllNonDividableUnits.contains(x.Unit)
+        	iniList, x -> HCUnits.AllNonDividableUnits.contains(x.getUnit())
         );
 
         HashMap<UnitPart, UnitTypes> types = new HashMap<UnitPart, UnitTypes>();
@@ -851,7 +851,7 @@ public class Conversions
         	//Prefix.Factor is already included in newExponent.
         	ExceptionInstantiation.NewUnitInfo
         	(
-        		originalInfo, newExponent, new Prefix(originalInfo.Prefix.PrefixUsage)
+        		originalInfo, newExponent, new Prefix(originalInfo.Prefix.getPrefixUsage())
         	)
         );
     }

@@ -2,12 +2,9 @@ package InternalUnitParser.Hardcoding;
 
 import InternalUnitParser.Classes.*;
 import InternalUnitParser.Methods.*;
-import InternalUnitParser.CSharpAdaptation.*;
 import UnitParser.*;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 
 @SuppressWarnings("serial")
@@ -2605,18 +2602,15 @@ public class HCMain
 	        { put(UnitSystems.ImperialAndUSCS, UnitSystems.Imperial); }
 	        { put(UnitSystems.None, UnitSystems.None); }
 	    };
-	    
-	    DefaultUnnamedUnits = (HashMap<UnitSystems, Units>)AllUnits.get(UnitTypes.None).entrySet().stream().collect
-	    (
-	    	Collectors.toMap
-	    	(
-	    		x -> x.getKey(), x -> Linq.FirstOrDefaultDict
-	    		(
-	    			x.getValue(), new AbstractMap.SimpleEntry<Units, Double>(Units.None, 0.0)
-	    		)
-	    		.getKey()
-	    	)
-	    );
+
+	    DefaultUnnamedUnits = new HashMap<UnitSystems, Units>()
+	    {
+	        { put(UnitSystems.SI, Units.ValidSIUnit); }
+	        { put(UnitSystems.CGS, Units.ValidCGSUnit); }
+	        { put(UnitSystems.Imperial, Units.ValidImperialUSCSUnit); }
+	        { put(UnitSystems.USCS, Units.ValidUSCSUnit); }
+	        { put(UnitSystems.None, Units.ValidUnit); }
+	    };
 	    
         AllUnitTypes = MethodsHardcoding.GetAllMain();
 	}      

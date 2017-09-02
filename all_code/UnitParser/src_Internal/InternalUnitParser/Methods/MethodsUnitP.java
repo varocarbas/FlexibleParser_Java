@@ -171,18 +171,18 @@ public class MethodsUnitP
     {
         if (unitInfo.Parts.size() == 0)
         {
-            if (unitInfo.Prefix.Factor != 1.0)
+            if (unitInfo.Prefix.getFactor() != 1.0)
             {
                 unitInfo = Managed.NormaliseUnitInfo(unitInfo);
             }
 
             unitInfo.Unit = Units.Unitless;
-            unitInfo.Prefix = new Prefix(1.0, unitInfo.Prefix.PrefixUsage);
+            unitInfo.Prefix = new Prefix(1.0, unitInfo.Prefix.getPrefixUsage());
         }
-        else if (Math.abs(unitInfo.Value) < 1 && unitInfo.Prefix.Factor > 1)
+        else if (Math.abs(unitInfo.Value) < 1 && unitInfo.Prefix.getFactor() > 1)
         {
-            unitInfo.Value = unitInfo.Value * unitInfo.Prefix.Factor;
-            unitInfo.Prefix = new Prefix(unitInfo.Prefix.PrefixUsage);
+            unitInfo.Value = unitInfo.Value * unitInfo.Prefix.getFactor();
+            unitInfo.Prefix = new Prefix(unitInfo.Prefix.getPrefixUsage());
         }
 
         unitInfo = RemoveUnitPartPrefixes(unitInfo);
@@ -208,7 +208,7 @@ public class MethodsUnitP
 
         for (int i = 0; i < unitInfo.Parts.size(); i++)
         {
-            if (unitInfo.Parts.get(i).Prefix.Factor == 1.0) continue;
+            if (unitInfo.Parts.get(i).getPrefix().getFactor() == 1.0) continue;
 
             if (isBasicPrefixUnit(unitInfo.Parts.get(i)))
             {
@@ -220,11 +220,11 @@ public class MethodsUnitP
             (
             	prefixInfo, Managed.RaiseToIntegerExponent
                 (
-                	unitInfo.Parts.get(i).Prefix.Factor, unitInfo.Parts.get(i).Exponent
+                	unitInfo.Parts.get(i).getPrefix().getFactor(), unitInfo.Parts.get(i).Exponent
                 ), 
             	Operations.Multiplication
             );
-            unitInfo.Parts.get(i).Prefix = new Prefix();
+            unitInfo.Parts.get(i).setPrefix(new Prefix());
         }
 
         unitInfo = Managed.PerformManagedOperationUnits
@@ -241,7 +241,7 @@ public class MethodsUnitP
         {
             for (BasicUnit item2: item.values())
             {
-                if (item2.Unit == unitPart.Unit && item2.PrefixFactor == unitPart.Prefix.Factor)
+                if (item2.Unit == unitPart.getUnit() && item2.PrefixFactor == unitPart.getPrefix().getFactor())
                 {
                     return true;
                 }
@@ -293,15 +293,15 @@ public class MethodsUnitP
         double absValue = Math.abs(unitInfo.Value);
         boolean valueIsOK = (absValue >= 0.001 && absValue <= 1000.0);
 
-        if (valueIsOK && unitInfo.BaseTenExponent == 0 && unitInfo.Prefix.Factor == 1.0)
+        if (valueIsOK && unitInfo.BaseTenExponent == 0 && unitInfo.Prefix.getFactor() == 1.0)
         {
             return unitInfo;
         }
 
         PrefixTypes prefixType =
         (
-            unitInfo.Prefix.Type != PrefixTypes.None ?
-            unitInfo.Prefix.Type : PrefixTypes.SI
+            unitInfo.Prefix.getType() != PrefixTypes.None ?
+            unitInfo.Prefix.getType() : PrefixTypes.SI
         );
 
         boolean prefixIsOK = PrefixCanBeUsedWithUnit(unitInfo, prefixType);
@@ -349,7 +349,7 @@ public class MethodsUnitP
     
     static boolean PrefixCanBeUsedWithUnitBasicCheck(UnitInfo unitInfo, PrefixTypes prefixType)
     {
-        if (unitInfo.Prefix.PrefixUsage == PrefixUsageTypes.AllUnits) return true;
+        if (unitInfo.Prefix.getPrefixUsage() == PrefixUsageTypes.AllUnits) return true;
 
         if (prefixType == PrefixTypes.SI)
         {
@@ -380,7 +380,7 @@ public class MethodsUnitP
     
     static UnitInfo CompensateBaseTenExponentWithPrefix(UnitInfo unitInfo)
     {
-        if (unitInfo.BaseTenExponent == 0 || unitInfo.Prefix.Factor == 1) return unitInfo;
+        if (unitInfo.BaseTenExponent == 0 || unitInfo.Prefix.getFactor() == 1) return unitInfo;
 
         UnitInfo tempInfo = Managed.NormaliseUnitInfo
         (
@@ -390,7 +390,7 @@ public class MethodsUnitP
         tempInfo = MethodsCommon.GetBestPrefixForTarget
         (
             tempInfo, tempInfo.BaseTenExponent,
-            unitInfo.Prefix.Type, true
+            unitInfo.Prefix.getType(), true
         );
 
         unitInfo = ExceptionInstantiation.NewUnitInfo
@@ -970,7 +970,7 @@ public class MethodsUnitP
         Prefix prefix =
         (
             targetPrefix != null ? new Prefix(targetPrefix) :
-            new Prefix(1.0, unitP.UnitPrefix.PrefixUsage)
+            new Prefix(1.0, unitP.getUnitPrefix().getPrefixUsage())
         );
 
         return ConvertToCommon
@@ -980,7 +980,7 @@ public class MethodsUnitP
             (
             	ExceptionInstantiation.NewUnitInfo
             	(
-            		1.0, targetUnit, prefix, true, unitP.Error.ExceptionHandling
+            		1.0, targetUnit, prefix, true, unitP.getError().ExceptionHandling
             	)
             )
         );
@@ -994,7 +994,7 @@ public class MethodsUnitP
             (
             	ExceptionInstantiation.NewUnitInfo
             	(
-            		original, 0.0, 0, new Prefix(original.UnitPrefix.PrefixUsage)
+            		original, 0.0, 0, new Prefix(original.getUnitPrefix().getPrefixUsage())
             	),
                 unitString
             )
@@ -1021,7 +1021,7 @@ public class MethodsUnitP
             new UnitP
             (
                 infoResult, original,
-                original.OriginalUnitString + " => " + 
+                original.getOriginalUnitString() + " => " + 
                 MethodsCommon.GetUnitString(infoResult)
             )
         );

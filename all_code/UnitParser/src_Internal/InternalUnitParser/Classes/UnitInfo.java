@@ -82,7 +82,7 @@ public class UnitInfo
 	
 		PopulateVariables
 		(
-			unitInfo.Value, unitInfo.Unit, new Prefix(unitInfo.Prefix.Factor, prefixUsage),
+			unitInfo.Value, unitInfo.Unit, new Prefix(unitInfo.Prefix.getFactor(), prefixUsage),
 			unitInfo.Parts, MethodsCommon.GetInitialPositions(unitInfo.Parts),
 			unitInfo.BaseTenExponent, unitInfo.Type, unitInfo.System, 
 			new ErrorInfo(ErrorTypes.None, exceptionHandling)
@@ -100,16 +100,16 @@ public class UnitInfo
 		}
 	
 		ArrayList<UnitPart> unitParts = new ArrayList<UnitPart>();
-		if (unitP.UnitParts != null && unitP.UnitParts.size() > 0)
+		if (unitP.getUnitParts() != null && unitP.getUnitParts().size() > 0)
 		{
-			unitParts = new ArrayList<UnitPart>(unitP.UnitParts);
+			unitParts = new ArrayList<UnitPart>(unitP.getUnitParts());
 		}
 	
 		PopulateVariables
 		(
-			unitP.Value, unitP.Unit, unitP.UnitPrefix, unitParts,
-			MethodsCommon.GetInitialPositions(unitParts), unitP.BaseTenExponent,
-			unitP.UnitType, unitP.UnitSystem, unitP.Error
+			unitP.getValue(), unitP.getUnit(), unitP.getUnitPrefix(), unitParts,
+			MethodsCommon.GetInitialPositions(unitParts), unitP.getBaseTenExponent(),
+			unitP.getUnitType(), unitP.getUnitSystem(), unitP.getError()
 		);
 	}
 	

@@ -12,27 +12,154 @@ import java.util.ArrayList;
 public class UnitP implements Comparable<UnitP>
 {
     /**Member of the Units enum which best suits the current conditions.**/
-    public final Units Unit;
+    private Units Unit;
+    
+    /**
+    Unit getter.
+    @return Current value of the private Units variable Unit. 
+    **/
+    public Units getUnit()
+	{
+	    return Unit;
+	}  
+    
     /**Member of the UnitTypes enum which best suits the current conditions.**/
-    public final UnitTypes UnitType;
+    private UnitTypes UnitType;
+    
+    /**
+    UnitType getter.
+    @return Current value of the private UnitTypes variable UnitType. 
+    **/
+    public UnitTypes getUnitType()
+	{
+	    return UnitType;
+	}  
+    
     /**Member of the UnitSystems enum which best suits the current conditions.**/
-    public final UnitSystems UnitSystem;        
+    private UnitSystems UnitSystem; 
+    
+    /**
+    UnitSystem getter.
+    @return Current value of the private UnitSystems variable UnitSystem. 
+    **/
+    public UnitSystems getUnitSystem()
+	{
+	    return UnitSystem;
+	}  
+    
     /**Prefix information affecting all the unit parts.**/
-    public final Prefix UnitPrefix;
+    private Prefix UnitPrefix;
+    
+    /**
+    UnitPrefix getter.
+    @return Current value of the private Prefix variable UnitPrefix. 
+    **/
+    public Prefix getUnitPrefix()
+	{
+	    return 
+	    (
+	    	UnitPrefix == null ? null :
+	    	new Prefix(UnitPrefix)
+	    );
+	}  
+    
     /**List containing the basic unit parts which define the current unit.**/
-    public final ArrayList<UnitPart> UnitParts;
+    private ArrayList<UnitPart> UnitParts;
+    
+    /**
+    UnitParts getter.
+    @return Current value of the private ArrayList<UnitPart> variable UnitParts. 
+    **/
+    public ArrayList<UnitPart> getUnitParts()
+	{
+	    return 
+	    (
+	    	UnitParts == null ? 
+	    	new ArrayList<UnitPart>() : 
+	    	new ArrayList<UnitPart>(UnitParts)
+	    );
+	}  
+    
     /**String variable including the unit information which was input at variable instantiation.**/
-    public final String OriginalUnitString;
+    private String OriginalUnitString;
+    
+    /**
+    OriginalUnitString getter.
+    @return Current value of the private String variable OriginalUnitString. 
+    **/
+    public String getOriginalUnitString()
+	{
+	    return OriginalUnitString;
+	}  
+    
     /**String variable containing the symbol(s) best describing the current unit.**/
-    public final String UnitString;
+    private String UnitString;
+    
+    /**
+    UnitString getter.
+    @return Current value of the private String variable UnitString. 
+    **/
+    public String getUnitString()
+	{
+	    return UnitString;
+	}  
+    
     /**String variable including both numeric and unit information associated with the current conditions.**/
-    public final String ValueAndUnitString;
+    private String ValueAndUnitString;
+    
+    /**
+    ValueAndUnitString getter.
+    @return Current value of the private String variable ValueAndUnitString. 
+    **/
+    public String getValueAndUnitString()
+	{
+	    return ValueAndUnitString;
+	}  
+    
     /**Base-ten exponent used when dealing with too small/big numeric values.**/
-    public final Integer BaseTenExponent;
+    private Integer BaseTenExponent;
+    
+    /**
+    BaseTenExponent getter.
+    @return Current value of the private Integer variable BaseTenExponent. 
+    **/
+    public Integer getBaseTenExponent()
+	{
+	    return BaseTenExponent;
+	}  
+    
     /**ErrorInfo variable containing all the error- and exception-related information.**/
-    public final ErrorInfo Error;
+    private ErrorInfo Error;
+    
+    /**
+    Error getter.
+    @return Current value of the private ErrorInfo variable Error. 
+    **/
+    public ErrorInfo getError()
+	{
+	    return Error;
+	} 
+    
     /**double variable storing the primary numeric information under the current conditions.**/
-    public Double Value;
+    private Double Value;
+    
+    /**
+    Value getter.
+    @return Current value of the private Double variable Value. 
+    **/
+    public Double getValue()
+	{
+	    return Value;
+	} 
+    
+    /**
+    Value setter.
+    @param value New value for the private Double variable Value.  
+    **/
+    public void setValue(Double value)
+	{
+	    Value = value;
+	} 
     
     static String StartHardcoding = CSharpOther.StartHarcoding();
     
@@ -75,7 +202,7 @@ public class UnitP implements Comparable<UnitP>
         );
 
         UnitInfo unitInfo = ExceptionInstantiation.NewUnitInfo(0.0, exceptionHandling, prefixUsage);
-        
+
         String unitString = "";
 
         if (parsingError == ErrorTypes.None)
@@ -107,11 +234,12 @@ public class UnitP implements Comparable<UnitP>
         Unit = unitP2.UnitInfo.Unit;
         UnitType = unitP2.UnitType;
         UnitSystem = unitP2.UnitSystem;
-        UnitPrefix = new Prefix(unitP2.UnitInfo.Prefix.Factor, prefixUsage);
+        UnitPrefix = new Prefix(unitP2.UnitInfo.Prefix.getFactor(), prefixUsage);
         UnitParts = unitP2.UnitInfo.Parts;
         UnitString = unitP2.UnitString;
         ValueAndUnitString = unitP2.ValueAndUnitString;
         //If applicable, this instantiation would trigger an exception right away.
+
         Error = ExceptionInstantiation.NewErrorInfo
         (
             (parsingError != ErrorTypes.None ? parsingError : unitP2.ErrorType),
@@ -201,7 +329,7 @@ public class UnitP implements Comparable<UnitP>
         {
             Value = 0.0;
             BaseTenExponent = 0;
-            UnitPrefix = new Prefix(prefix.PrefixUsage);
+            UnitPrefix = new Prefix(prefix.getPrefixUsage());
             UnitParts = new ArrayList<UnitPart>();
             UnitString = null;
             OriginalUnitString = null;
@@ -221,7 +349,7 @@ public class UnitP implements Comparable<UnitP>
             UnitParts = tempInfo.Parts;
             UnitString = MethodsCommon.GetUnitString(tempInfo);
             OriginalUnitString = UnitString;
-            ValueAndUnitString = Value.toString() + " " + UnitString;
+            ValueAndUnitString = ((Double)Value).toString() + " " + UnitString;
         }
 
         //If applicable, this instantiation would trigger an exception right away.
@@ -379,15 +507,15 @@ public class UnitP implements Comparable<UnitP>
         UnitPrefix = new Prefix(unitP.UnitPrefix);
         UnitParts = new ArrayList<UnitPart>(unitP.UnitParts);
         UnitString = unitP.UnitString;
-        OriginalUnitString = unitP.Value.toString() +
+        OriginalUnitString = ((Double)unitP.Value).toString() +
         (
             unitP.BaseTenExponent != 0 ?
-            "*10^" + unitP.BaseTenExponent.toString() : ""
+            "*10^" + ((Integer)unitP.BaseTenExponent).toString() : ""
         );
-        ValueAndUnitString = Value.toString() +
+        ValueAndUnitString = ((Double)Value).toString() +
         (
             BaseTenExponent != 0 ?
-            "*10^" + BaseTenExponent.toString() : ""
+            "*10^" + ((Integer)BaseTenExponent).toString() : ""
         ) + " " + UnitString;
         Error = new ErrorInfo(unitP.Error);
     }
@@ -513,7 +641,7 @@ public class UnitP implements Comparable<UnitP>
         {
             Value = 0.0;
             BaseTenExponent = 0;
-            UnitPrefix = new Prefix(unitP2.UnitInfo.Prefix.PrefixUsage);
+            UnitPrefix = new Prefix(unitP2.UnitInfo.Prefix.getPrefixUsage());
             UnitParts = new ArrayList<UnitPart>();
             Unit = Units.None;
             UnitType = UnitTypes.None;
@@ -549,7 +677,7 @@ public class UnitP implements Comparable<UnitP>
     	this
     	(
     		new ParseInfo(unitInfo), unitP.OriginalUnitString, unitP.UnitSystem,
-    		unitP.Error.ExceptionHandling, unitP.UnitPrefix.PrefixUsage, noPrefixImprovement
+    		unitP.Error.ExceptionHandling, unitP.UnitPrefix.getPrefixUsage(), noPrefixImprovement
     	);    	
     }
 
@@ -574,7 +702,7 @@ public class UnitP implements Comparable<UnitP>
     	this
         (
             new ParseInfo(unitInfo), originalUnitString, UnitSystems.None,
-            unitP.Error.ExceptionHandling, unitInfo.Prefix.PrefixUsage, 
+            unitP.Error.ExceptionHandling, unitInfo.Prefix.getPrefixUsage(), 
             false, improveFinalValue
         );
     }
@@ -925,6 +1053,7 @@ public class UnitP implements Comparable<UnitP>
     
     //---------------------------- Public error-related classes.
     
+    /**Contains the main information associated with errors and exceptions.**/
     public static class ErrorInfo
     {
         /**Error type.**/
@@ -1214,11 +1343,11 @@ public class UnitP implements Comparable<UnitP>
         return
         (
             this.BaseTenExponent == other.BaseTenExponent ? 
-            new Double(this.Value * this.UnitPrefix.Factor).compareTo
+            new Double(this.Value * this.UnitPrefix.getFactor()).compareTo
             (
-            	other.Value * other.UnitPrefix.Factor
+            	other.Value * other.UnitPrefix.getFactor()
             ) :
-            this.BaseTenExponent.compareTo(other.BaseTenExponent)
+            ((Integer)this.BaseTenExponent).compareTo(other.BaseTenExponent)
         );
     }
 

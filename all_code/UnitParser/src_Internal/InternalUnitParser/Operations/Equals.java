@@ -22,7 +22,7 @@ public class Equals
     {
         return 
         (
-        	first.Error.equals(second.Error)
+        	first.getError().equals(second.getError())
         );
     }
 
@@ -30,8 +30,14 @@ public class Equals
     {
         return UnitInfosAreEqual
         (
-            ExceptionInstantiation.NewUnitInfo(first.Value, first.Unit, first.UnitPrefix),
-            ExceptionInstantiation.NewUnitInfo(second.Value, second.Unit, second.UnitPrefix)
+            ExceptionInstantiation.NewUnitInfo
+            (
+            	first.getValue(), first.getUnit(), first.getUnitPrefix()
+            ),
+            ExceptionInstantiation.NewUnitInfo
+            (
+            	second.getValue(), second.getUnit(), second.getUnitPrefix()
+            )
         );
     }
     
@@ -92,8 +98,8 @@ public class Equals
     {
         return 
         (
-            first.Type == second.Type && 
-            first.Factor == second.Factor
+            first.getType() == second.getType() && 
+            first.getFactor() == second.getFactor()
         );
     }
 
@@ -102,8 +108,8 @@ public class Equals
         return
         (
             first.Exponent == second.Exponent &&
-            first.Unit == second.Unit && 
-            first.Prefix.Factor == second.Prefix.Factor
+            first.getUnit() == second.getUnit() && 
+            first.getPrefix().getFactor() == second.getPrefix().getFactor()
         );
     }
 
