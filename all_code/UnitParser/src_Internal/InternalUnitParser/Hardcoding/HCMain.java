@@ -10,46 +10,46 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class HCMain
 {
-    //Main classification for all the units (type, system and conversion factor).
-    //This dictionary represents an easily-modifiable container of well-structured unit information.
-    //After using all this information to create more specific/efficient collections, GetAllMain() deletes it.
+	//Main classification for all the units (type, system and conversion factor).
+	//This dictionary represents an easily-modifiable container of well-structured unit information.
+	//After using all this information to create more specific/efficient collections, GetAllMain() deletes it.
 	public static HashMap<UnitTypes, HashMap<UnitSystems, HashMap<Units, Double>>> AllUnits; 
 
-    //HashMap mostly meant to deal with the Imperial/USCS peculiar relationship.
+	//HashMap mostly meant to deal with the Imperial/USCS peculiar relationship.
 	public static HashMap<UnitSystems, UnitSystems> AllBasicSystems;
 
-    //Some times, all what matters is knowing whether the system is metric (SI/CGS) or English (Imperial/USCS).
+	//Some times, all what matters is knowing whether the system is metric (SI/CGS) or English (Imperial/USCS).
 	public static HashMap<UnitSystems, UnitSystems> AllMetricEnglish;
-    
-    //This collection relates all the unnamed units with their associated systems.
+	
+	//This collection relates all the unnamed units with their associated systems.
 	//There are many units which don't fit any Units enum case, the unnamed units.
 	//Unnamed units avoid a huge (and not too logical) hardcoding effort.
 	//Note that UnitParser supports much more units than just the members of the Units enum.
 	//By bearing in mind that any combination of named units forming a supported type is also 
 	//supported, the total number of supported units is way too big to even think about facing
 	//it in a hardcoding-all-of-them way.
-    public static HashMap<UnitSystems, Units> DefaultUnnamedUnits;
-    
-    //Relates all the units with their respective types.
-    //The call to GetALLMain() also populates all the collections below this line.
-    
-    public static HashMap<Units, UnitTypes> AllUnitTypes;
+	public static HashMap<UnitSystems, Units> DefaultUnnamedUnits;
+	
+	//Relates all the units with their respective types.
+	//The call to GetALLMain() also populates all the collections below this line.
+	
+	public static HashMap<Units, UnitTypes> AllUnitTypes;
 
-    //Relates all the units with their respective systems.
-    public static HashMap<Units, UnitSystems> AllUnitSystems;
+	//Relates all the units with their respective systems.
+	public static HashMap<Units, UnitSystems> AllUnitSystems;
 
-    //Relates all the units with their respective conversion factors.
-    public static HashMap<Units, Double> AllUnitConversionFactors;
+	//Relates all the units with their respective conversion factors.
+	public static HashMap<Units, Double> AllUnitConversionFactors;
 
-    //Includes all the supported unit string representations (case doesn't matter).
-    public static HashMap<String, Units> AllUnitStrings;
+	//Includes all the supported unit string representations (case doesn't matter).
+	public static HashMap<String, Units> AllUnitStrings;
 
-    //Includes secondary symbols for some units (case does matter).
-    public static HashMap<String, Units> AllUnitSymbols2;
+	//Includes secondary symbols for some units (case does matter).
+	public static HashMap<String, Units> AllUnitSymbols2;
 
-    //Some conversion factors are too small/big for the decimal type.
-    public static HashMap<Double, UnitInfo> AllBeyondDecimalConversionFactors;  
-    
+	//Some conversion factors are too small/big for the decimal type.
+	public static HashMap<Double, UnitInfo> AllBeyondDecimalConversionFactors;  
+	
 	public static void Start()
 	{
 		AllUnits = new HashMap<UnitTypes, HashMap<UnitSystems, HashMap<Units, Double>>>()
@@ -2612,6 +2612,6 @@ public class HCMain
 	        { put(UnitSystems.None, Units.ValidUnit); }
 	    };
 	    
-        AllUnitTypes = MethodsHardcoding.GetAllMain();
+		AllUnitTypes = MethodsHardcoding.GetAllMain();
 	}      
 }
