@@ -13,10 +13,10 @@ public class TryParseMethods
 		{
 		    output.DoubleVal = ParseCommon(input).doubleValue();
 		    Double val = new Double(output.DoubleVal);
+		    output.IsOK = true;
+		    
 		    if (input != null && (input.contains("e") || !(val.isNaN() || val.isInfinite())))
 		    {
-		    	output.IsOK = true;
-		    	
 		    	String[] tempVar = CSharpOther.SplitTryCatch(input.toLowerCase(), "e");
 		    	if (tempVar.length == 2)
 		    	{
@@ -35,7 +35,7 @@ public class TryParseMethods
 		    	}
 		    }
 		}
-		catch (Exception e) { }
+		catch (Exception e) { output.IsOK = false; }
 		
 		return output;
 	}
