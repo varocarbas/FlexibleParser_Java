@@ -388,7 +388,7 @@ public class UnitParser
             sampleId + " - " +
             (
                 unitP.getError().getType() != UnitP.ErrorTypes.None ?
-            	"Error. " + unitP.getError().getErrorMessage() :
+            	"Error. " + unitP.getError().getMessage() :
                 unitP.getValueAndUnitString() + " (" +
                 unitP.getUnit().toString() + ", " +
                 unitP.getUnitType().toString() + ", " +
