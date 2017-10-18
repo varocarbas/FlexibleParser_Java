@@ -6,4 +6,4 @@ env:
   - DIR=all_code/Test
 script: cd $DIR && ant build  
 notifications:
-  email: false
+   email: false
