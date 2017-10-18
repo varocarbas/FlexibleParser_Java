@@ -21,7 +21,7 @@ public class MethodsUnitP
 		parseInfo = Parse.StartUnitParse(parseInfo);
 		boolean isOK =
 		(
-			parseInfo.UnitInfo.Error.Type == ErrorTypes.None &&
+			parseInfo.UnitInfo.Error.getType() == ErrorTypes.None &&
 			parseInfo.UnitInfo.Unit != Units.None
 		);
 		
@@ -68,7 +68,7 @@ public class MethodsUnitP
 		{
 			unitInfo = Parse.ParseDecimal(parts[0]);
 
-			if (unitInfo.Error.Type == ErrorTypes.None)
+			if (unitInfo.Error.getType() == ErrorTypes.None)
 			{
 				unitInfo.TempString = CSharpOther.StringJoin(" ", parts, 1, parts.length - 1);
 			}
@@ -77,7 +77,7 @@ public class MethodsUnitP
 		{
 			unitInfo = Parse.ParseDecimal(valueAndUnit);
 
-			if (unitInfo.Error.Type == ErrorTypes.None)
+			if (unitInfo.Error.getType() == ErrorTypes.None)
 			{
 				unitInfo.TempString = "Unitless";
 			}
@@ -85,7 +85,7 @@ public class MethodsUnitP
 
 		return 
 		(
-			unitInfo.Error.Type == ErrorTypes.None ? unitInfo :
+			unitInfo.Error.getType() == ErrorTypes.None ? unitInfo :
 			ParseValueAndUnitNoBlank(valueAndUnit)
 		);
 	}
@@ -104,7 +104,7 @@ public class MethodsUnitP
 		
 		UnitInfo unitInfo = Parse.ParseDecimal(valueString);
 
-		if (unitInfo.Error.Type == ErrorTypes.None)
+		if (unitInfo.Error.getType() == ErrorTypes.None)
 		{
 			unitInfo.TempString = valueAndUnit.replace(valueString, "");
 		}
@@ -146,14 +146,14 @@ public class MethodsUnitP
 	{
 		ParseInfo parseInfo = 
 		(
-			unitInfo.Error.Type != ErrorTypes.None ?
+			unitInfo.Error.getType() != ErrorTypes.None ?
 			new ParseInfo(unitInfo) : ParseInputs
 			(
 				new ParseInfo(unitInfo, unitString)
 			)
 		);
 
-		if (parseInfo.UnitInfo.Error.Type == ErrorTypes.None && parseInfo.UnitInfo.Unit == Units.None)
+		if (parseInfo.UnitInfo.Error.getType() == ErrorTypes.None && parseInfo.UnitInfo.Unit == Units.None)
 		{
 			parseInfo.UnitInfo.Error = ExceptionInstantiation.NewErrorInfo(ErrorTypes.InvalidUnit);
 		}
@@ -161,8 +161,8 @@ public class MethodsUnitP
 		return new UnitPConstructor
 		(
 			unitString, parseInfo.UnitInfo, parseInfo.UnitInfo.Type, 
-			parseInfo.UnitInfo.System, parseInfo.UnitInfo.Error.Type, 
-			unitInfo.Error.ExceptionHandling, false, 
+			parseInfo.UnitInfo.System, parseInfo.UnitInfo.Error.getType(), 
+			unitInfo.Error.getExceptionHandling(), false, 
 			(unitInfo.Value != parseInfo.UnitInfo.Value)
 		);
 	}
@@ -980,7 +980,7 @@ public class MethodsUnitP
 			(
 				ExceptionInstantiation.NewUnitInfo
 				(
-					1.0, targetUnit, prefix, true, unitP.getError().ExceptionHandling
+					1.0, targetUnit, prefix, true, unitP.getError().getExceptionHandling()
 				)
 			)
 		);
@@ -1016,8 +1016,8 @@ public class MethodsUnitP
 
 		return
 		(
-			infoResult.Error.Type != ErrorTypes.None ?
-			new UnitP(original, infoResult.Error.Type) :
+			infoResult.Error.getType() != ErrorTypes.None ?
+			new UnitP(original, infoResult.Error.getType()) :
 			new UnitP
 			(
 				infoResult, original,

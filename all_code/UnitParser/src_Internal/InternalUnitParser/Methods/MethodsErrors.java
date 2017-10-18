@@ -17,13 +17,13 @@ public class MethodsErrors
 		{
 			outError = ErrorTypes.InvalidUnit;
 		}
-		else if (original.getError().Type != ErrorTypes.None)
+		else if (original.getError().getType() != ErrorTypes.None)
 		{
-			outError = original.getError().Type;
+			outError = original.getError().getType();
 		}
-		else if (targetInfo.Error.Type != ErrorTypes.None)
+		else if (targetInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = targetInfo.Error.Type;
+			outError = targetInfo.Error.getType();
 		}
 
 		return outError;
@@ -42,13 +42,13 @@ public class MethodsErrors
 		{
 			outError = ErrorTypes.InvalidUnitConversion;
 		}
-		else if (originalInfo.Error.Type != ErrorTypes.None)
+		else if (originalInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = originalInfo.Error.Type;
+			outError = originalInfo.Error.getType();
 		}
-		else if (targetInfo.Error.Type != ErrorTypes.None)
+		else if (targetInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = targetInfo.Error.Type;
+			outError = targetInfo.Error.getType();
 		}
 		else if (originalInfo.Type == UnitTypes.None || originalInfo.Type != targetInfo.Type)
 		{
@@ -105,9 +105,9 @@ public class MethodsErrors
 
 		for (UnitInfo info: new UnitInfo[] { unitInfo1, unitInfo2 })
 		{
-			if (info.Error.Type != ErrorTypes.None)
+			if (info.Error.getType() != ErrorTypes.None)
 			{
-				return info.Error.Type;
+				return info.Error.getType();
 			}
 		}
 

@@ -48,9 +48,9 @@ public class Equals
 	
 	public static boolean UnitInfosAreEqual(UnitInfo firstInfo, UnitInfo secondInfo, boolean ignoreValues)
 	{
-		if (firstInfo.Error.Type == ErrorTypes.None || secondInfo.Error.Type == ErrorTypes.None)
+		if (firstInfo.Error.getType() == ErrorTypes.None || secondInfo.Error.getType() == ErrorTypes.None)
 		{
-			return firstInfo.Error.Type == secondInfo.Error.Type;
+			return firstInfo.Error.getType() == secondInfo.Error.getType();
 		}
 
 		UnitInfo firstInfo2 = Managed.NormaliseUnitInfo(firstInfo);
@@ -117,8 +117,8 @@ public class Equals
 	{
 		return
 		(
-			first.ExceptionHandling == second.ExceptionHandling &&
-			first.Type == second.Type
+			first.getExceptionHandling() == second.getExceptionHandling() &&
+			first.getType() == second.getType()
 		);
 	}
 

@@ -149,7 +149,7 @@ public class Conversions
 		
 		return
 		(
-			info2.Error.Type != ErrorTypes.None ? info2 :
+			info2.Error.getType() != ErrorTypes.None ? info2 :
 			Managed.PerformManagedOperationUnits
 			(
 				outInfo, 
@@ -200,7 +200,7 @@ public class Conversions
 				ConvertUnitValue(outInfo, targetInfo2, inverseOutputs) :
 				PerformUnitPartConversion(outInfo, targetInfo2, isInternal)
 			);
-			if (tempInfo.Error.Type != ErrorTypes.None)
+			if (tempInfo.Error.getType() != ErrorTypes.None)
 			{
 				return tempInfo;
 			}
@@ -351,13 +351,13 @@ public class Conversions
 		{
 			outError = ErrorTypes.InvalidUnitConversion;
 		}
-		else if (originalInfo.Error.Type != ErrorTypes.None)
+		else if (originalInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = originalInfo.Error.Type;
+			outError = originalInfo.Error.getType();
 		}
-		else if (targetInfo.Error.Type != ErrorTypes.None)
+		else if (targetInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = targetInfo.Error.Type;
+			outError = targetInfo.Error.getType();
 		}
 		else if (originalInfo.Type == UnitTypes.None || originalInfo.Type != targetInfo.Type)
 		{
@@ -427,7 +427,7 @@ public class Conversions
 				convertInfo, item.getKey(), item.getValue(), isInternal
 			);
 
-			if (convertInfo.Error.Type != ErrorTypes.None)
+			if (convertInfo.Error.getType() != ErrorTypes.None)
 			{
 				return convertInfo;
 			}
@@ -790,7 +790,7 @@ public class Conversions
 			MethodsCommon.UpdateMainUnitVariables(ExceptionInstantiation.NewUnitInfo(targetUnit)), false
 		);
 
-		if (conversionItems.ConvertInfo.Error.Type != ErrorTypes.None)
+		if (conversionItems.ConvertInfo.Error.getType() != ErrorTypes.None)
 		{
 			return new ConversionItems();
 		}

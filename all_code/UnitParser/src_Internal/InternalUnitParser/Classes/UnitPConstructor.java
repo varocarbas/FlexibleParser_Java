@@ -18,7 +18,7 @@ public class UnitPConstructor
 
     public UnitPConstructor(String originalUnitString, UnitInfo unitInfo) 
     {
-    	this(originalUnitString, unitInfo, UnitTypes.None, UnitSystems.None, unitInfo.Error.Type);
+    	this(originalUnitString, unitInfo, UnitTypes.None, UnitSystems.None, unitInfo.Error.getType());
     }
     
     public UnitPConstructor(String originalUnitString, UnitInfo unitInfo, UnitTypes unitType)

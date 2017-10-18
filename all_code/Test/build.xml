@@ -11,6 +11,7 @@
     <path id="Test.classpath">
         <pathelement location="bin"/>
         <pathelement location="../../all_binaries/UnitParser.jar"/>
+        <pathelement location="../../all_binaries/NumberParser.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>

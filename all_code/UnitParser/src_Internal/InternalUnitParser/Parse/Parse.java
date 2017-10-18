@@ -36,7 +36,7 @@ public class Parse
 
 		if (parseInfo.InputToParse.length() < 1)
 		{
-			if (parseInfo.UnitInfo.Error.Type == ErrorTypes.None)
+			if (parseInfo.UnitInfo.Error.getType() == ErrorTypes.None)
 			{
 				parseInfo.UnitInfo.Error = ExceptionInstantiation.NewErrorInfo(ErrorTypes.InvalidUnit);
 			}
@@ -147,7 +147,7 @@ public class Parse
 				if (temp[0].contains("e")) return errorInfo;
 				
 				UnitInfo outInfo = ParseDouble(temp[0]);
-				if (outInfo.Error.Type != ErrorTypes.None)
+				if (outInfo.Error.getType() != ErrorTypes.None)
 				{
 					return errorInfo;
 				}
@@ -491,7 +491,7 @@ public class Parse
 
 	static ParseInfo GetIndividualUnitParts(ParseInfo parseInfo)
 	{
-		if (parseInfo.UnitInfo.Unit == Units.None || parseInfo.UnitInfo.Error.Type != ErrorTypes.None)
+		if (parseInfo.UnitInfo.Unit == Units.None || parseInfo.UnitInfo.Error.getType() != ErrorTypes.None)
 		{
 			return parseInfo;
 		}
@@ -586,7 +586,7 @@ public class Parse
 					parseInfo, previous, isNumerator, symbol
 				);
 
-				if (parseInfo.UnitInfo.Error.Type != ErrorTypes.None)
+				if (parseInfo.UnitInfo.Error.getType() != ErrorTypes.None)
 				{
 					return parseInfo;
 				}
@@ -684,7 +684,7 @@ public class Parse
 			if (tempArray.length >= 2)
 			{
 				UnitInfo tempInfo = ParseDouble(tempArray[0]);
-				if (tempInfo.Value != 0.0 && tempInfo.Error.Type == ErrorTypes.None)
+				if (tempInfo.Value != 0.0 && tempInfo.Error.getType() == ErrorTypes.None)
 				{
 					parseInfo.UnitInfo = Managed.PerformManagedOperationUnits
 					(
@@ -704,7 +704,7 @@ public class Parse
 
 	public static ParseInfo StartCompoundAnalysis(ParseInfo parseInfo)
 	{
-		if (parseInfo.UnitInfo.Error.Type != ErrorTypes.None)
+		if (parseInfo.UnitInfo.Error.getType() != ErrorTypes.None)
 		{
 			return parseInfo;
 		}

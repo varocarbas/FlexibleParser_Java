@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: varocarbas
+Implementation-Title: NumberParser
+Implementation-Version: 1.0.8.5
+Implementation-Vendor: Custom Solvers 2.0
+Implementation-URL: https://customsolvers.com/number_parser_java/
+Specification-Title: NumberParser 
+Specification-Version: 1.0.8.5
+Specification-Vendor: Custom Solvers 2.0

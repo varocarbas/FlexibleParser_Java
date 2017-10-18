@@ -796,9 +796,9 @@ public class MethodsCommon
 
 		for (UnitInfo info: new ArrayList<UnitInfo>() {{ add(unitInfo1); add(unitInfo2); }})
 		{
-			if (info.Error.Type != ErrorTypes.None)
+			if (info.Error.getType() != ErrorTypes.None)
 			{
-				return info.Error.Type;
+				return info.Error.getType();
 			}
 		}
 
@@ -1821,13 +1821,13 @@ public class MethodsCommon
 		{
 			outError = ErrorTypes.InvalidUnit;
 		}
-		else if (original.getError().Type != ErrorTypes.None)
+		else if (original.getError().getType() != ErrorTypes.None)
 		{
-			outError = original.getError().Type;
+			outError = original.getError().getType();
 		}
-		else if (targetInfo.Error.Type != ErrorTypes.None)
+		else if (targetInfo.Error.getType() != ErrorTypes.None)
 		{
-			outError = targetInfo.Error.Type;
+			outError = targetInfo.Error.getType();
 		}
 
 		return outError;

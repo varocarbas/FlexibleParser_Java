@@ -100,7 +100,7 @@ public class Managed
 		//Only the variable with the bigger value is modified. For example: 5*10^5 & 3*10^3 is converted
 		//into 500*10^3 & 3*10^3 in order to allow the addition 500 + 3. 
 		UnitInfo big2 = AdaptBiggerAdditionOperand(unitInfos2, bigSmallI, operation);
-		if (big2.Error.Type != ErrorTypes.None)
+		if (big2.Error.getType() != ErrorTypes.None)
 		{
 			return TooBigGapAddition(unitInfos2, bigSmallI, operation);
 		}
@@ -171,7 +171,7 @@ public class Managed
 
 		boolean isWrong = 
 		(
-			big2.Error.Type != ErrorTypes.None || big2.BaseTenExponent != 0 ?
+			big2.Error.getType() != ErrorTypes.None || big2.BaseTenExponent != 0 ?
 			
 			//The value of the bigger input times 10^(gap between BaseTenExponent of inputs) is too big. 
 			isWrong = true :
@@ -249,7 +249,7 @@ public class Managed
 			(
 				outInfo, baseInfo, Operations.Multiplication
 			);
-			if (outInfo.Error.Type != ErrorTypes.None) return outInfo;
+			if (outInfo.Error.getType() != ErrorTypes.None) return outInfo;
 		}
 
 		return
@@ -278,7 +278,7 @@ public class Managed
 			normalisedInfos.get(0), normalisedInfos.get(1), operation
 		);
 
-		if (outInfo.Error.Type != ErrorTypes.None)
+		if (outInfo.Error.getType() != ErrorTypes.None)
 		{
 			return ExceptionInstantiation.NewUnitInfo(outInfo, ErrorTypes.NumericError);
 		}
@@ -347,7 +347,13 @@ public class Managed
 				//being quicker, but also the only option in many situations. Note that an addition/subtraction between
 				//two int variables whose result is outside the int range might not trigger an exception (+ random 
 				//negative value as output).
-				if (VaryBaseTenExponent(outInfo, secondInfo0.BaseTenExponent, operation == Operations.Division).Error.Type != ErrorTypes.None)
+				if 
+				(
+					VaryBaseTenExponent
+					(
+						outInfo, secondInfo0.BaseTenExponent, operation == Operations.Division
+					)
+					.Error.getType() != ErrorTypes.None)
 				{
 					return new UnitInfo(outInfo, ErrorTypes.InvalidOperation);
 				}
@@ -392,7 +398,7 @@ public class Managed
 
 		UnitInfo secondInfo2 = ConvertValueToBaseTen(secondInfo.Value);
 		outInfo = VaryBaseTenExponent(outInfo, secondInfo2.BaseTenExponent, operation == Operations.Division);
-		if (Math.abs(secondInfo2.Value) == 1.0 || outInfo.Error.Type != ErrorTypes.None) return outInfo;
+		if (Math.abs(secondInfo2.Value) == 1.0 || outInfo.Error.getType() != ErrorTypes.None) return outInfo;
 		
 		try
 		{

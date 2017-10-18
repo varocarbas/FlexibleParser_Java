@@ -30,9 +30,9 @@ public class OperationsPublic
 
 				for (UnitInfo tempInfo: tempInfos)
 				{
-					if (tempInfo.Error.Type != ErrorTypes.None)
+					if (tempInfo.Error.getType() != ErrorTypes.None)
 					{
-						return new UnitP(first, tempInfo.Error.Type);
+						return new UnitP(first, tempInfo.Error.getType());
 					}
 				}
 				//Only the second operator might have been modified.
@@ -48,14 +48,14 @@ public class OperationsPublic
 			);
 		}
 		
-		if (outInfo.Error.Type != ErrorTypes.None || outInfo.Unit == Units.None)
+		if (outInfo.Error.getType() != ErrorTypes.None || outInfo.Unit == Units.None)
 		{
 			return new UnitP
 			(
 				first,
 				(
-					outInfo.Error.Type != ErrorTypes.None ?
-					outInfo.Error.Type : ErrorTypes.InvalidUnit
+					outInfo.Error.getType() != ErrorTypes.None ?
+					outInfo.Error.getType() : ErrorTypes.InvalidUnit
 				)
 			);
 		}
@@ -63,8 +63,8 @@ public class OperationsPublic
 
 		return 
 		(
-			outInfo.Error.Type != ErrorTypes.None ?
-			new UnitP(first, outInfo.Error.Type) :
+			outInfo.Error.getType() != ErrorTypes.None ?
+			new UnitP(first, outInfo.Error.getType()) :
 			new UnitP
 			(
 				outInfo, first, operationString, 
@@ -175,7 +175,7 @@ public class OperationsPublic
 			)
 		);
 		
-		if (outInfo.Error.Type == ErrorTypes.None)
+		if (outInfo.Error.getType() == ErrorTypes.None)
 		{
 			outInfo = Managed.PerformManagedOperationUnits
 			(
@@ -203,7 +203,7 @@ public class OperationsPublic
 
 		return
 		(
-			outInfo.Error.Type != ErrorTypes.None ? new UnitP(unitP, outInfo.Error.Type) :
+			outInfo.Error.getType() != ErrorTypes.None ? new UnitP(unitP, outInfo.Error.getType()) :
 			new UnitP
 			(
 				outInfo, unitP, operationString,
