@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move package &apos;test0&apos; to &apos;UnitParser/src_Public&apos;&#x0D;&#x0A;- Original project: &apos;test0&apos;&#x0D;&#x0A;- Destination element: &apos;UnitParser/src_Public&apos;&#x0D;&#x0A;- Original element: &apos;test0/src/test0&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=UnitParser/src_Public" element1="/src&lt;test0" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1496495198777" version="1.0"/>
-</session>
