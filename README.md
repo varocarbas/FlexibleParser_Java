@@ -20,7 +20,7 @@ It allows to easily deal with a wide variety of situations involving units of me
 Among its most salient features are: user-defined exception triggering and gracefully managing numeric values of any size.
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1028916.svg)](https://zenodo.org/record/1028916) [NumberParser](https://customsolvers.com/number_parser_java/) ([last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/NumberParser_1.0.8.5), [readme file](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_readme/NumberParser_Java.md), [test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/UnitParser.java))<br/>
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1028916.svg)](https://zenodo.org/record/1028916) [NumberParser](https://customsolvers.com/number_parser_java/) ([last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/NumberParser_1.0.8.5), [readme file](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_readme/NumberParser_Java.md), [test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/NumberParser.java))<br/>
 It provides a common framework for all the Java numeric types. Main features: exceptions managed internally; beyond-double-range support; custom mathematical functionalities.
 
 
