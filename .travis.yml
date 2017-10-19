@@ -3,6 +3,7 @@ jdk:
   - oraclejdk8
 env:
   - DIR=all_code/UnitParser
+  - DIR=all_code/NumberParser
   - DIR=all_code/Test
 script: cd $DIR && ant build  
 notifications:
