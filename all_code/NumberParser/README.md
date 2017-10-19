@@ -1,6 +1,8 @@
 # NumberParser (Java)
 
-[Test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/NumberParser.java)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1028916.svg)](https://zenodo.org/record/1028916)
+
+[Last release](https://github.com/varocarbas/FlexibleParser_Java/releases/tag/NumberParser_1.0.8.5) -- [Test program](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/NumberParser.java) 
 
 [https://customsolvers.com/number_parser_java/](https://customsolvers.com/number_parser_java/) (ES: [https://customsolvers.com/number_parser_java_es/](https://customsolvers.com/number_parser_java_es/))
 
