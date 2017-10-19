@@ -51,11 +51,11 @@ Number number = new Number(12.3, 456);
 //123 (int).
 NumberD numberD = 
 (
-    new NumberD(123).lessThan(new NumberD(new Number(456))) ?
-    //123 (int)
-    new NumberD(123.456, NumericTypes.Integer) :
-    //123.456 (double)
-    new NumberD(123.456)
+	new NumberD(123).lessThan(new NumberD(new Number(456))) ?
+	//123 (int)
+	new NumberD(123.456, NumericTypes.Integer) :
+	//123.456 (double)
+	new NumberD(123.456)
 );
 
 
@@ -88,7 +88,7 @@ This class includes all the NumberParser mathematical functionalities.
 Number number = Math2.RoundExact
 (
 	new Number(123456.789), 3, RoundType.AlwaysToZero, 
-    RoundSeparator.BeforeDecimalSeparator
+	RoundSeparator.BeforeDecimalSeparator
 );
 
 //30 (double).
@@ -103,9 +103,9 @@ NumberD numberD = Math2.ApplyPolynomialFit
 		new NumberD[] 
 		{ 
 			new NumberD(10), new NumberD(20), new NumberD(40) 
-        }
-    )
-    , new NumberD(3)
+		}
+	)
+	, new NumberD(3)
 );
 
 //3628800 (int).
