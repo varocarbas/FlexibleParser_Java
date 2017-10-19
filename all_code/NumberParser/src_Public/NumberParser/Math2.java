@@ -329,10 +329,28 @@ public class Math2
     **/
     public static NumberD Pow(NumberD n1, NumberD n2)
     {
-        return Math2Existing.PerformOperationTwoOperands
-        (
-        	n1, n2, ExistingOperations.Pow
-        );
+    	Number n12 = Math2Existing.PowSqrtPrecheckInput(n1);
+    	Number n22 = Math2Existing.PowSqrtPrecheckInput(n2);
+
+    	boolean isOK = (n12 != null && n22 != null);
+    	Number output = null;
+    	if (isOK)
+    	{
+    		output = Math2.PowDecimal(n12, n22.getValue());
+    		if 
+    		(
+    			!output.getError().equals(ErrorTypesNumber.None) || 
+    			output.greaterThan(new Number(Double.MAX_VALUE)) ||
+    			output.lessThan(new Number(Double.MIN_VALUE))
+    		) 
+    		{ isOK = false; }
+    	}
+
+    	return 
+    	(
+    		isOK ? new NumberD(output) :
+    		new NumberD(ErrorTypesNumber.NativeMethodError)
+    	);
     }
 
     /**
@@ -440,10 +458,27 @@ public class Math2
     **/
     public static NumberD Sqrt(NumberD n)
     {
-        return Math2Existing.PerformOperationOneOperand
-        (
-        	n, ExistingOperations.Sqrt
-        );
+    	Number n2 = Math2Existing.PowSqrtPrecheckInput(n);
+
+    	boolean isOK = (n2 != null);
+    	Number output = null;
+    	if (isOK)
+    	{
+    		output = Math2.SqrtDecimal(n2);
+    		if 
+    		(
+    			!output.getError().equals(ErrorTypesNumber.None) || 
+    			output.greaterThan(new Number(Double.MAX_VALUE)) ||
+    			output.lessThan(new Number(Double.MIN_VALUE))
+    		) 
+    		{ isOK = false; }
+    	}
+    	
+    	return 
+    	(
+    		isOK ? new NumberD(output) :
+    		new NumberD(ErrorTypesNumber.NativeMethodError)
+    	);
     }
 
     /**

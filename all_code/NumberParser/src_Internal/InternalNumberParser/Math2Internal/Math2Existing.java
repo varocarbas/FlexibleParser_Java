@@ -12,6 +12,36 @@ import InternalNumberParser.Operations.*;
 @SuppressWarnings("serial")
 public class Math2Existing
 {
+	//The Pow/Sqrt methods are expected to only be used with values supported
+	//by the in-built alternatives. As far as the calculations are performed with
+	//PowDecimal/PowSqrt, which can deal with values of any size, it is required to
+	//check whether an error should be thrown. PowSqrtPrecheckInput focuses on 
+	//analysing the input values.
+	public static Number PowSqrtPrecheckInput(NumberD input)
+	{
+    	boolean isOK = true;
+    	
+    	NumberD input2 = new NumberD(input);
+    	if 
+    	(
+    		!input2.getError().equals(ErrorTypesNumber.None)
+    	)
+    	{
+    		isOK = false;
+    	}
+    	else
+    	{
+    		input2 = OperationsManaged.PassBaseTenToValue(input2);
+        	if 
+        	(
+        		input2.getBaseTenExponent() > 0
+        	)
+        	{ isOK = false; }    		
+    	}
+    	
+    	return (isOK ? new Number(input2) : null);
+	}
+	
     public static NumberD PerformOperationOneOperand(NumberD n, ExistingOperations operation)
     {
         NumberD n2 = AdaptInputsToMathMethod
@@ -385,32 +415,6 @@ public class Math2Existing
         		)
         	);
         }
-        else if (operation == ExistingOperations.Sqrt)
-        {
-        	n.setValue
-        	(
-        		Math.sqrt
-        		(
-                	Conversions.ConvertTargetToDouble
-                	(
-                       	n.getValue()
-                    )
-        		)
-        	);
-        }
-        else if (operation == ExistingOperations.Sqrt)
-        {
-        	n.setValue
-        	(
-        		Math.sqrt
-        		(
-                    Conversions.ConvertTargetToDouble
-                    (
-                       	n.getValue()
-                    )
-        		)
-        	);
-        }
         else if (operation == ExistingOperations.Tan)
         {
         	n.setValue
@@ -575,23 +579,6 @@ public class Math2Existing
         			(
         				n2.getValue()
         			)
-        		)
-        	);
-        }
-        else if (operation == ExistingOperations.Pow)
-        {
-        	n1.setValue
-        	(
-        		Math.pow
-        		(
-                    Conversions.ConvertTargetToDouble
-                    (
-                       	n1.getValue()
-                    ),
-                    Conversions.ConvertTargetToDouble
-                    (
-                       	n2.getValue()
-                    )
         		)
         	);
         }
