@@ -115,7 +115,7 @@ NumberD numberD = Math2.Factorial(new NumberD(10));
 ### Native Methods
 ```Math2``` also includes ```NumberD```-adapted versions of a big number of ```Math``` and .NET ```System.Math``` methods. 
 
-It also includes ```PowDecimal```\```SqrtDecimal``` which allow to unrestrictedly use NumberX variables with ```Math.pow```\```Math.sqrt```. Note that this Java version doesn't rely on the original C# custom implementation (detailed explanations in [varocarbas.com Project 10](https://varocarbas.com/fractional_exponentiation/)) because of only making sense within the .NET conditions (i.e., high-precision ```decimal``` type not natively supported by the in-built methods).
+It also includes ```PowDecimal```\\```SqrtDecimal``` which allow to unrestrictedly use NumberX variables with ```Math.pow```\\```Math.sqrt```. Note that this Java version doesn't rely on the original C# custom implementation (detailed explanations in [varocarbas.com Project 10](https://varocarbas.com/fractional_exponentiation/)) because of only making sense within the .NET conditions (i.e., high-precision ```decimal``` type not natively supported by the in-built methods).
 
 ```Java
 //1.582502898380e+14 (double).
