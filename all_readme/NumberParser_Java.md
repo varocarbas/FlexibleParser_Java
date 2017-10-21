@@ -131,7 +131,7 @@ NumberD numberD = Math2.Log(new NumberD(123.45));
 ```
 
 ## Further Code Samples
-The [test application](https://github.com/varocarbas/FlexibleParser/blob/master/all_code/Test/Parts/NumberParser.cs) includes a relevant number of descriptive code samples. 
+The [test application](https://github.com/varocarbas/FlexibleParser_Java/blob/master/all_code/Test/src/Parts/NumberParser.java) includes a relevant number of descriptive code samples. 
 
 ## Authorship & Copyright
 I, Alvaro Carballo Garcia (varocarbas), am the sole author of each single bit of this code.
