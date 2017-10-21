@@ -5,7 +5,7 @@ public class Main
 	public static void main(String[] args)
 	{
     	//UnitParser tests.
-	    //UnitParser.StartTest();	
+	    UnitParser.StartTest();	
 		
     	//NumberParser tests.
 	    NumberParser.StartTest();
