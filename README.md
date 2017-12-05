@@ -4,7 +4,7 @@
 
 **NOTE:** this is the conversion to Java of the original C# code stored in the [FlexibleParser repository](https://github.com/varocarbas/FlexibleParser). 
 
-FlexibleParser is a multi-purpose parsing library based upon the following ideas:
+FlexibleParser is a group of multi-purpose parsing libraries based upon the following ideas:
 
 - Intuitive, adaptable and easy to use.
 - Pragmatic, but aiming for the maximum accuracy and correctness.
